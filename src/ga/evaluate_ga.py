@@ -424,6 +424,7 @@ def evaluate_ga(dataset, label_data, train, test, reduction_method='sembd'):
             , train_x_lr_st_reduction, train_x_lr_reduction, train_y_lr_reduction, test_x_lr_st_reduction, test_x_lr_reduction, test_y_lr_reduction, reduction_variance, reduction_variance_ratio = process.spectralembeding(
             train, test, dataset1, show_plots=False)
     elif reduction_method == 'auto_encoder':
+
         scaler_reduction, train_x_stf_reduction, train_x_st_reduction, train_y_reduction, test_x_stf_reduction, test_x_st_reduction, test_y_reduction, train_x_rf_stf_reduction, train_x_rf_reduction, train_y_rf_reduction, test_x_rf_stf_reduction, test_x_rf_reduction, test_y_rf_reduction, train_x_rf_st_reduction, test_x_rf_st_reduction \
             , train_x_lr_st_reduction, train_x_lr_reduction, train_y_lr_reduction, test_x_lr_st_reduction, test_x_lr_reduction, test_y_lr_reduction, reduction_variance, reduction_variance_ratio = process.auto_encoder(
             train, test, dataset1, show_plots=False)
@@ -555,9 +556,7 @@ def evaluate_ga(dataset, label_data, train, test, reduction_method='sembd'):
             # pdb.set_trace()
 
             try:
-                if (F1_rnn_reduction > best_F1_rnn) and (math.isnan(F1_rnn_reduction) == False) and (
-                        math.isinf(F1_rnn_reduction) == False) and (
-                        F1_rnn_reduction is not None):
+                if (F1_rnn_reduction > best_F1_rnn):
                     best_rmse_rnn = test_score_rnn_reduction
                     # best_rnn_model = copy.copy(rnn_model)
                     best_rnn_model = rnn_model_reduction
@@ -619,8 +618,7 @@ def evaluate_ga(dataset, label_data, train, test, reduction_method='sembd'):
                 #  print('test_score RMSE RF:%.3f ' % test_score_rf)
                 # print('F1 RF:%.3f ' % F1_rf)
 
-                if (F1_rf > best_F1_rf) and (math.isnan(F1_rf) == False) and (math.isinf(F1_rf) == False) and (
-                        F1_rf is not None):
+                if (F1_rf > best_F1_rf):
                     # best_rmse_rf = test_score_rf
                     # best_rf_model = copy.copy(rf_model)
                     best_rf_model = rf_model
@@ -675,8 +673,7 @@ def evaluate_ga(dataset, label_data, train, test, reduction_method='sembd'):
                 #   print('test_score RMSE LR:%.3f ' % test_score_lr)
                 print('F1 LR:%.3f ' % F1_lr)
                 # pdb.set_trace()
-                if (F1_lr > best_F1_lr) and (math.isnan(F1_lr) == False) and (math.isinf(F1_lr) == False) and (
-                        F1_lr is not None):
+                if (F1_lr > best_F1_lr):
                     # best_rmse_lr = test_score_lr
                     best_lr_model = copy.copy(lr_model)
                     best_lr_model = lr_model
@@ -770,19 +767,42 @@ def evaluate_ga(dataset, label_data, train, test, reduction_method='sembd'):
 
     # Ensemble
     print('=============== Ensemble ===============')
-    # pdb.set_trace()
+    if F1_lr < 0.05:
+        best_test_predict_lr = best_test_predict_rnn
+        best_lr_model = best_rnn_model
+        best_lr_model.variance = best_rnn_model.test_MC_predict_var
+        all_F1_lr = all_F1_rnn
+        all_recall_lr = all_recall_rnn
+        all_precision_lr = all_precision_rnn
+        all_accuracy_lr = all_accuracy_rnn
+        best_Accuracy_lr = best_Accuracy_rnn
+        best_recall_lr = best_recall_rnn
+        best_precision_lr = best_precision_rnn
+
+    if F1_rf < 0.05:
+        best_test_predict_rf = best_test_predict_rnn
+        best_rf_model = best_rnn_model
+        best_rf_model.variance = best_rnn_model.test_MC_predict_var
+        all_F1_rf = all_F1_rnn
+        all_recall_rf = all_recall_rnn
+        all_precision_rf = all_precision_rnn
+        all_accuracy_rf = all_accuracy_rnn
+        best_Accuracy_rf = best_Accuracy_rnn
+        best_recall_rf = best_recall_rnn
+        best_precision_rf = best_precision_rnn
 
     dict_ensemble = ensemble_stacking(label_data, best_rnn_model, best_lr_model, best_rf_model, best_test_predict_rnn,
                                       best_test_predict_lr, best_test_predict_rf,
-                                      test_y_reduction, scaler_reduction, train_x=train_x_stf_reduction,
+                                      test_y_reduction, scaler_reduction, reduction_variance_ratio,
+                                      train_x=train_x_stf_reduction,
                                       test_x=test_x_stf_reduction,
                                       train_y=train_y_reduction,
                                       test_y=test_y_reduction, train_time_rnn=train_time_rnn,
                                       test_time_rnn=test_time_rnn,
                                       train_time_rf=train_time_rf,
                                       test_time_rf=test_time_rf, train_time_lr=train_time_lr,
-                                      test_time_lr=test_time_lr, var_reduction=reduction_variance,
-                                      var_reduction_ratio=reduction_variance_ratio)
+                                      test_time_lr=test_time_lr, var_pca=reduction_variance
+                                      )
 
     # print('Ensemble averaging_values: ', averaging_values)
     #  print('Ensemble uncertainty_values: ', stacking_values_uncertainty)

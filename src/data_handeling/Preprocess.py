@@ -1,5 +1,4 @@
 import gc  # garbage collector
-import pdb
 
 import numpy as np
 import pandas as pd
@@ -207,7 +206,7 @@ class Preprocess:
         pca_test.fit(test)
 
         self.test = pca_test.transform(test)
-        pdb.set_trace()
+        # pdb.set_trace()
 
         scaler, train_x_stf, train_x_st, train_y, train_x_rf_stf, train_x_rf, train_y_rf, train_x_rf_st, train_x_lr_st, train_x_lr, train_y_lr = self.load_dataset(
             self.train)
@@ -392,7 +391,7 @@ class Preprocess:
 
         return scaler, train_x_stf, train_x_st, train_y, test_x_stf, test_x_st, test_y, train_x_rf_stf, train_x_rf, train_y_rf, test_x_rf_stf, test_x_rf, test_y_rf, train_x_rf_st, test_x_rf_st, train_x_lr_st, train_x_lr, train_y_lr, test_x_lr_st, test_x_lr, test_y_lr, spca_test.explained_variance_, spca_test.explained_variance_ratio_
 
-    def mds(self, train, test, data_path, n_components=0.95, show_plots=False):
+    def mds(self, train, test, data_path=None, n_components=0.95, show_plots=False):
 
         train_explained_variance_, train_explained_variance_ratio_, train_n_components = self.explain_var(train,
                                                                                                           n_components='mle')
@@ -418,25 +417,26 @@ class Preprocess:
 
         return scaler, train_x_stf, train_x_st, train_y, test_x_stf, test_x_st, test_y, train_x_rf_stf, train_x_rf, train_y_rf, test_x_rf_stf, test_x_rf, test_y_rf, train_x_rf_st, test_x_rf_st, train_x_lr_st, train_x_lr, train_y_lr, test_x_lr_st, test_x_lr, test_y_lr, test_explained_variance_, test_explained_variance_ratio_, test_explained_variance_, test_explained_variance_ratio_
 
-    def auto_encoder(self, model, train, test, data_path, show_plots=False):
+    def auto_encoder(self, train, test, data_path=None, show_plots=False):
 
         # m.add(Dense(500, activation='elu', input_shape=(38, 200)))
 
         # input_shape = train_x_st.shape[2]
+
         model1 = autoencodermodel(input_shape=train.shape[1])
-        history1 = model1.fit(train, train, epochs=1, verbose=0, batch_size=1)
+        history1 = model1.fit(train, train, epochs=100, verbose=0, batch_size=1)
         encoder1 = Model(model1.input, model1.get_layer('encoder_3').output)
         self.train = encoder1.predict(train)
         Renc1 = model1.predict(train)
 
         model2 = autoencodermodel(input_shape=test.shape[1])
-        history2 = model2.fit(test, test, epochs=1, verbose=0, batch_size=1)
+        history2 = model2.fit(test, test, epochs=100, verbose=0, batch_size=1)
         encoder2 = Model(model2.input, model2.get_layer('encoder_3').output)
         self.test = encoder2.predict(test)
         Renc2 = model2.predict(test)
 
-        train_explained_variance_, train_explained_variance_ratio_ = self.explain_var(self.train, n_components=5)
-        test_explained_variance_, test_explained_variance_ratio_ = self.explain_var(self.test, n_components=5)
+        train_explained_variance_, train_explained_variance_ratio_, _ = self.explain_var(self.train, n_components='mle')
+        test_explained_variance_, test_explained_variance_ratio_, _ = self.explain_var(self.test, n_components='mle')
 
         # pdb.set_trace()
 
