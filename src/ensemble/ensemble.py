@@ -1,3 +1,5 @@
+
+
 import numpy as np
 import pandas as pd
 
@@ -7,7 +9,7 @@ from src.utils import score
 
 
 def ensemble_stacking(label_data, rnn_model, lr_model, rf_model, model_1_values, model_3_values, model_2_values,
-                      test, scaler, train_x=None, train_y=None, var_pca=None, var_pca_ratio=None, *args, **kwargs):
+                      test, scaler, var_pca_ratio, train_x=None, train_y=None, var_pca=None, *args, **kwargs):
     """
     Ensemble result of 2 models using stacking and averaging.
     Takes both model predictions, averages them and calculates the new RMSE
@@ -25,11 +27,13 @@ def ensemble_stacking(label_data, rnn_model, lr_model, rf_model, model_1_values,
         var_rf = rf_model.variance
         var_lr = lr_model.variance
         model_3_values = np.array(model_3_values)
-        model_3_values = model_3_values.reshape(model_3_values.shape[1], model_3_values.shape[0])
+        model_3_values = model_3_values.reshape(max(model_3_values.shape[1], model_3_values.shape[0]),
+                                                min(model_3_values.shape[1], model_3_values.shape[0]))
         model_3_values = model_3_values.squeeze()
         model_1_values = model_1_values.squeeze()
         model_2_values = np.array(model_2_values)
-        model_2_values = model_2_values.reshape(model_2_values.shape[1], model_2_values.shape[0])
+        model_2_values = model_2_values.reshape(max(model_2_values.shape[1], model_2_values.shape[0]),
+                                                min(model_2_values.shape[1], model_2_values.shape[0]))
         model_2_values = model_2_values.squeeze()
         # Generates the stacking values by averaging both predictions
         # model1 rnn   model2 rf    model3 lr
@@ -81,7 +85,7 @@ def ensemble_stacking(label_data, rnn_model, lr_model, rf_model, model_1_values,
             stacking_values12 = []
             stacking_values13 = []
             stacking_values23 = []
-
+            
             for i in range(model_1_values.shape[0]):
                 #   print(i)
                 w_rnn = abs(1 / var_rnn[i, k])
@@ -331,25 +335,25 @@ def ensemble_stacking(label_data, rnn_model, lr_model, rf_model, model_1_values,
     for i in range(len(predictedanomaly123) - N):
         if (predictedanomaly123[i] + 1 == predictedanomaly123[i + 1] and predictedanomaly123[i + 1] + 1 ==
                 predictedanomaly123[
-                    i + 2] and predictedanomaly123[i + 3] + 1 == predictedanomaly123[i + 4]):
+                    i + 2]):
             newarr123.append(predictedanomaly123[i])
 
     for i in range(len(predictedanomaly12) - N):
         if (predictedanomaly12[i] + 1 == predictedanomaly12[i + 1] and predictedanomaly12[i + 1] + 1 ==
                 predictedanomaly12[
-                    i + 2] and predictedanomaly12[i + 3] + 1 == predictedanomaly12[i + 4]):
+                    i + 2]):
             newarr12.append(predictedanomaly12[i])
 
     for i in range(len(predictedanomaly13) - N):
         if (predictedanomaly13[i] + 1 == predictedanomaly13[i + 1] and predictedanomaly13[i + 1] + 1 ==
                 predictedanomaly13[
-                    i + 2] and predictedanomaly13[i + 3] + 1 == predictedanomaly13[i + 4]):
+                    i + 2]):
             newarr13.append(predictedanomaly13[i])
 
     for i in range(len(predictedanomaly23) - N):
         if (predictedanomaly23[i] + 1 == predictedanomaly23[i + 1] and predictedanomaly23[i + 1] + 1 ==
                 predictedanomaly23[
-                    i + 2] and predictedanomaly23[i + 3] + 1 == predictedanomaly23[i + 4]):
+                    i + 2]):
             newarr23.append(predictedanomaly23[i])
 
     newarr123 = np.array(newarr123)

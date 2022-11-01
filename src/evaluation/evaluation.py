@@ -1,4 +1,3 @@
-import pdb
 import random
 import sys
 import time
@@ -32,7 +31,9 @@ with open(sys.argv[1], "r") as yaml_config_file:
 rnn_epochs = experiment_config['ml_parameters']['rnn_epochs']
 optimiser = experiment_config['ml_parameters']['optimizer_type']
 mcdropout_samples = experiment_config['ml_parameters']['mc_dropout']
-import plotly.graph_objects as go
+from plotly import graph_objs as go
+
+
 from tqdm import tqdm
 
 
@@ -527,7 +528,7 @@ def evaluate_rf(model, train_x, test_x, train_y, test_y, scaler, label_data, pca
     test_predict = []
 
     truth_uncertainty_df = pd.DataFrame()
-    if train_x.shape[2] > 1:
+    if train_x.shape[2] > 0:
         for k in range(train_x.shape[2]):
             print(k)
             # pdb.set_trace()
@@ -665,6 +666,8 @@ def evaluate_rf(model, train_x, test_x, train_y, test_y, scaler, label_data, pca
 
         train_ano_scores = np.sum(train_prob_scores_total, axis=0)
         test_ano_scores = np.sum(test_prob_scores_total, axis=0)
+        model.train_score = train_scores_total
+        model.test_score = test_scores_total
         #  pdb.set_trace()
         _, anomaly_score_eig, th_eig = eig_method(train_prob_scores_total, test_prob_scores_total, pca_var_ratio, vari)
 
@@ -835,7 +838,7 @@ def evaluate_rnn(model, train_x, test_x, train_y, test_y, scaler, optimiser, nam
     test_y = np.reshape(test_y, (test_y.shape[0], test_y.shape[2]))
     print(train_x.shape)
     print(train_y.shape)
-    pdb.set_trace()
+    # pdb.set_trace()
 
     model.fit(train_x, train_y, epochs=rnn_epochs, verbose=2)
     # Forecast
@@ -868,7 +871,7 @@ def evaluate_rnn(model, train_x, test_x, train_y, test_y, scaler, optimiser, nam
     # for i in range(n_experiments):
     t2 = time.time()
     print()
-    pdb.set_trace()
+    # pdb.set_trace()
 
     experiment_predictions = np.stack([model(test_x, training=True) for _ in range(mcdropout_samples)])
 
@@ -892,7 +895,7 @@ def evaluate_rnn(model, train_x, test_x, train_y, test_y, scaler, optimiser, nam
     test_uncertainty_std = []
     train_scores_total = []
     test_scores_total = []
-    # pdb.set_trace()
+
     # pca = PCA(n_components=0.99, svd_solver='full')
 
     # pca.fit(experiment_predictions1)
@@ -900,183 +903,180 @@ def evaluate_rnn(model, train_x, test_x, train_y, test_y, scaler, optimiser, nam
     # experiment_predictions_reduced = pca.transform(experiment_predictions1)
     # scaler = MinMaxScaler(feature_range=(-1, 1))
     M = experiment_predictions.mean(axis=0).shape[1]
+    for i in range(M):
+        print(i)
+        test_uncertainty_df['value_mean'] = experiment_predictions.mean(axis=0)[:, i]
+        test_uncertainty_df['value_mean'] = scaler.fit_transform(
+            test_uncertainty_df['value_mean'].values.reshape(-1, 1))
+        # scaler.inverse_transform(test_uncertainty_df['value_mean'].values.reshape(1, -1))
+        test_uncertainty_df['value_mean'] = scaler.fit_transform(
+            test_uncertainty_df['value_mean'].values.reshape(-1, 1))
 
-    if train_x.shape[1] > 1:
-        for i in range(M):
-            print(i)
-            test_uncertainty_df['value_mean'] = experiment_predictions.mean(axis=0)[:, i]
-            test_uncertainty_df['value_mean'] = scaler.fit_transform(
-                test_uncertainty_df['value_mean'].values.reshape(-1, 1))
-            # scaler.inverse_transform(test_uncertainty_df['value_mean'].values.reshape(1, -1))
-            test_uncertainty_df['value_mean'] = scaler.fit_transform(
-                test_uncertainty_df['value_mean'].values.reshape(-1, 1))
-
-            test_uncertainty_df['value_mean'] = scaler.inverse_transform(
-                test_uncertainty_df['value_mean'].values.reshape(-1, 1))
-            test_uncertainty_df['value_std'] = experiment_predictions.std(axis=0)[:, i]
-            test_uncertainty_df = test_uncertainty_df[['index', 'value_mean', 'value_std']]
-
-            # pdb.set_trace()
-            # train_MC_predict_point, train_MC_predict_var = predict_point(train_x, model, num_samples=mcdropout_samples)
-            # test_MC_predict_point, test_MC_predict_var = predict_point(test_x, model, num_samples=mcdropout_samples)
-            # test_MC_predict_var = test_uncertainty_df['value_std']
-            # test_MC_predict_point = test_uncertainty_df['value_mean']
-            # pdb.set_trace()
-
-            train_predict1 = scaler.inverse_transform(train_predict[:, i].reshape(-1, 1))
-            train_y1 = scaler.inverse_transform(train_y[:, i].reshape(-1, 1))
-            test_y1 = scaler.inverse_transform(test_y[:, i].reshape(-1, 1))
-            test_predict1 = scaler.inverse_transform(test_predict[:, i].reshape(-1, 1))
-
-            # train_MC_predict_point = scaler.inverse_transform([train_MC_predict_point])
-            # test_MC_predict_point = scaler.inverse_transform([test_MC_predict_point])
-            # test_uncertainty_df = pd.DataFrame()
-            #    pdb.set_trace()
-            # train_MC_predict = train_MC_predict_point
-            # test_MC_predict = test_MC_predict_point
-
-            # test_uncertainty_df = test_uncertainty_df[['index',  'value_mean', 'value_std']]
-            # test_uncertainty_df['value_mean']=test_MC_predict_point[0]
-            # test_uncertainty_df['lower_bound'] = test_MC_predict_point[0] - 3 * abs(test_MC_predict_var)
-            # test_uncertainty_df['upper_bound'] = test_MC_predict_point[0] + 3 * abs(test_MC_predict_var)
-            test_uncertainty_df['index'] = test_uncertainty_df.index
-            import plotly.graph_objects as go
-
-            test_uncertainty_plot_df = test_uncertainty_df  # .copy(deep=True)
-            # test_uncertainty_plot_df = test_uncertainty_plot_df.loc[test_uncertainty_plot_df['date'].between('2016-05-01', '2016-05-09')]
-            truth_uncertainty_plot_df = pd.DataFrame()
-
-            truth_uncertainty_plot_df['value'] = test_y[:, i]
-            truth_uncertainty_plot_df['index'] = truth_uncertainty_plot_df.index
-            # pdb.set_trace()
-            # test_predict = scaler.inverse_transform(test_predict)
-
-            #  test_y = scaler.inverse_transform([test_y])
-            # Calculate RMSE for train and test
-            #    train_score = mean_squared_error(train_y[:, 0], train_predict[:, 0])
-            train_scores = np.sqrt((train_y1.squeeze() - train_predict1.squeeze()) ** 2)
-            test_scores = np.sqrt((test_y1.squeeze() - test_predict1.squeeze()) ** 2)
-            #     test_score = mean_squared_error(test_y[:, 0], test_predict[:, 0])
-            # pdb.set_trace()
-
-            # train_score_MC = mean_squared_error(train_y[0], train_MC_predict_point[0, :])
-            # test_score_MC = mean_squared_error(test_y[0], test_MC_predict_point[0, :])
-            # print('Train Score: %.2f RMSE' % (train_score))
-            #   test_score = mean_squared_error(test_y[:, 0], test_predict[:, 0])
-            # print('Test Score: %.2f RMSE' % (test_score))
-            # pdb.set_trace()
-            train_score_mean = np.mean(train_scores)
-            train_score_std = np.std(train_scores)
-            test_score_mean = np.mean(test_scores)
-            test_score_std = np.std(test_scores)
-
-            train_prob_scores, test_prob_scores = Gauss_s(train_scores, test_scores, train_predict, test_predict,
-                                                          train_score_mean, train_score_std,
-                                                          test_score_mean, test_score_std)
-
-            # pdb.set_trace()
-            vari.append(test_uncertainty_df['value_std'])
-            train_prob_scores_total.append(train_prob_scores)
-            test_prob_scores_total.append(test_prob_scores)
-            test_uncertainty_mean.append(test_uncertainty_df['value_mean'])
-            test_uncertainty_std.append(test_uncertainty_df['value_std'])
-            train_scores_total.append(train_scores)
-            test_scores_total.append(test_scores)
-
-        train_ano_scores = np.sum(train_prob_scores_total, axis=0)
-        test_ano_scores = np.sum(test_prob_scores_total, axis=0)
-        _, anomaly_score_eig, th_eig = eig_method(train_prob_scores_total, test_prob_scores_total, pca_var_ratio, vari)
+        test_uncertainty_df['value_mean'] = scaler.inverse_transform(
+            test_uncertainty_df['value_mean'].values.reshape(-1, 1))
+        test_uncertainty_df['value_std'] = experiment_predictions.std(axis=0)[:, i]
+        test_uncertainty_df = test_uncertainty_df[['index', 'value_mean', 'value_std']]
 
         # pdb.set_trace()
-
-        test_uncertainty_df['lower_bound'] = -  th_eig
-
-        test_uncertainty_df['upper_bound'] = th_eig
-        bounds_df = pd.DataFrame()
-
-        bounds_df['lower_bound'] = test_uncertainty_df['lower_bound']
-        # bounds_df['prediction'] = test_uncertainty_df['value_mean']
-        # bounds_df['real_value'] = truth_uncertainty_plot_df['value']
-        bounds_df['upper_bound'] = test_uncertainty_df['upper_bound']
+        # train_MC_predict_point, train_MC_predict_var = predict_point(train_x, model, num_samples=mcdropout_samples)
+        # test_MC_predict_point, test_MC_predict_var = predict_point(test_x, model, num_samples=mcdropout_samples)
+        # test_MC_predict_var = test_uncertainty_df['value_std']
+        # test_MC_predict_point = test_uncertainty_df['value_mean']
         # pdb.set_trace()
 
-        bounds_df['contained'] = (bounds_df['upper_bound'] >= anomaly_score_eig.squeeze())
+        train_predict1 = scaler.inverse_transform(train_predict[:, i].reshape(-1, 1))
+        train_y1 = scaler.inverse_transform(train_y[:, i].reshape(-1, 1))
+        test_y1 = scaler.inverse_transform(test_y[:, i].reshape(-1, 1))
+        test_predict1 = scaler.inverse_transform(test_predict[:, i].reshape(-1, 1))
 
-        print("Proportion of points contained within 99% confidence interval:",
-              bounds_df['contained'].mean())
+        # train_MC_predict_point = scaler.inverse_transform([train_MC_predict_point])
+        # test_MC_predict_point = scaler.inverse_transform([test_MC_predict_point])
+        # test_uncertainty_df = pd.DataFrame()
+        #    pdb.set_trace()
+        # train_MC_predict = train_MC_predict_point
+        # test_MC_predict = test_MC_predict_point
+
+        # test_uncertainty_df = test_uncertainty_df[['index',  'value_mean', 'value_std']]
+        # test_uncertainty_df['value_mean']=test_MC_predict_point[0]
+        # test_uncertainty_df['lower_bound'] = test_MC_predict_point[0] - 3 * abs(test_MC_predict_var)
+        # test_uncertainty_df['upper_bound'] = test_MC_predict_point[0] + 3 * abs(test_MC_predict_var)
+        test_uncertainty_df['index'] = test_uncertainty_df.index
+
+        test_uncertainty_plot_df = test_uncertainty_df  # .copy(deep=True)
+        # test_uncertainty_plot_df = test_uncertainty_plot_df.loc[test_uncertainty_plot_df['date'].between('2016-05-01', '2016-05-09')]
+        truth_uncertainty_plot_df = pd.DataFrame()
+
+        truth_uncertainty_plot_df['value'] = test_y[:, i]
+        truth_uncertainty_plot_df['index'] = truth_uncertainty_plot_df.index
         # pdb.set_trace()
-        predictedanomaly = bounds_df.index[~bounds_df['contained']]
-        # pdb.set_trace()
+        # test_predict = scaler.inverse_transform(test_predict)
 
-        model.train_score = train_scores_total
-        model.test_score = test_scores_total
-        # model.train_score_MC = train_score_MC
-        # model.test_score_MC = test_score_MC
-        training_df = pd.DataFrame()
-        testing_df = pd.DataFrame()
-        training_truth_df = pd.DataFrame()
-        testing_truth_df = pd.DataFrame()
-
-        #        training_df['value'] = train_MC_predict_point[0]
-        #        training_df['index'] = training_df.index
-        #       training_df['source'] = 'Training Prediction'
-        #       testing_df['value'] = test_MC_predict_point[0]
-        #      testing_df['index'] = testing_df.index
-        #     testing_df['source'] = 'Test Prediction'
-        #    training_truth_df['value'] = train_y[0]
-        #    training_truth_df['index'] = training_truth_df.index
-        #    training_truth_df['source'] = 'True Value Training'
-        #    testing_truth_df['value'] = test_y[0]
-        #    testing_truth_df['index'] = testing_truth_df.index
-        #    testing_truth_df['source'] = 'True Value Testing'
-        # pdb.set_trace()
-
-        #   evaluation = pd.concat([training_df,
-        #                          testing_df,
-        #                         training_truth_df,
-        #                        testing_truth_df
-        #                       ], axis=0)
-
-        predictedanomaly = bounds_df.index[~bounds_df['contained']]
-        # N = Nmax_gen(predictedanomaly, test_uncertainty_df, truth_uncertainty_plot_df, label_data, name)
-
-        N = 3
-        newarr = []
-        predictedanomaly = predictedanomaly.sort_values()
-
-        for i in range(len(predictedanomaly) - N):
-            if (predictedanomaly[i] + 1 == predictedanomaly[i + 1] and predictedanomaly[i + 1] + 1 ==
-                    predictedanomaly[
-                        i + 2]):
-                newarr.append(predictedanomaly[i])
-
-        predicteddanomaly = list(set(newarr))
-
-        predicter = list(range(len(test_uncertainty_df)))
+        #  test_y = scaler.inverse_transform([test_y])
+        # Calculate RMSE for train and test
+        #    train_score = mean_squared_error(train_y[:, 0], train_predict[:, 0])
+        train_scores = np.sqrt((train_y1.squeeze() - train_predict1.squeeze()) ** 2)
+        test_scores = np.sqrt((test_y1.squeeze() - test_predict1.squeeze()) ** 2)
+        #     test_score = mean_squared_error(test_y[:, 0], test_predict[:, 0])
         # pdb.set_trace()
 
-        precision, recall, Accuracy, F1 = score(label_data, predicteddanomaly, test_predict)
+        # train_score_MC = mean_squared_error(train_y[0], train_MC_predict_point[0, :])
+        # test_score_MC = mean_squared_error(test_y[0], test_MC_predict_point[0, :])
+        # print('Train Score: %.2f RMSE' % (train_score))
+        #   test_score = mean_squared_error(test_y[:, 0], test_predict[:, 0])
+        # print('Test Score: %.2f RMSE' % (test_score))
         # pdb.set_trace()
+        train_score_mean = np.mean(train_scores)
+        train_score_std = np.std(train_scores)
+        test_score_mean = np.mean(test_scores)
+        test_score_std = np.std(test_scores)
 
-        model.train_score_MC = train_scores
-        model.test_score_MC = test_scores
-        model.train_score = train_scores_total
-        model.test_score = test_scores_total
-        model.train_predict = train_predict
-        model.test_predict = test_predict
-        model.test_MC_predict = test_predict
-        model.test_MC_predict_point = test_predict
-        model.train_MC_predict = train_predict
-        model.train_MC_predict_point = train_predict
-        model.test_MC_predict_var = vari
-        model.train_MC_predict_var = vari
-        model.predictedanomaly = predictedanomaly
-        model.train_time = train_time
-        model.test_time = test_time
-        tensorflow.compat.v1.trainable_variables(
-            scope=None
-        )
-        model.trainable_parameters = np.sum(
-            [np.prod(v.get_shape().as_list()) for v in tensorflow.compat.v1.trainable_variables()])
+        train_prob_scores, test_prob_scores = Gauss_s(train_scores, test_scores, train_predict, test_predict,
+                                                      train_score_mean, train_score_std,
+                                                      test_score_mean, test_score_std)
 
-        return model, train_scores, test_scores, train_scores, test_scores, train_predict, test_predict, test_predict, test_predict, train_predict, train_predict, vari, vari, predictedanomaly, precision, recall, Accuracy, F1
+        # pdb.set_trace()
+        vari.append(test_uncertainty_df['value_std'])
+        train_prob_scores_total.append(train_prob_scores)
+        test_prob_scores_total.append(test_prob_scores)
+        test_uncertainty_mean.append(test_uncertainty_df['value_mean'])
+        test_uncertainty_std.append(test_uncertainty_df['value_std'])
+        train_scores_total.append(train_scores)
+        test_scores_total.append(test_scores)
+
+    train_ano_scores = np.sum(train_prob_scores_total, axis=0)
+    test_ano_scores = np.sum(test_prob_scores_total, axis=0)
+    _, anomaly_score_eig, th_eig = eig_method(train_prob_scores_total, test_prob_scores_total, pca_var_ratio, vari)
+
+    # pdb.set_trace()
+
+    test_uncertainty_df['lower_bound'] = -  th_eig
+
+    test_uncertainty_df['upper_bound'] = th_eig
+    bounds_df = pd.DataFrame()
+
+    bounds_df['lower_bound'] = test_uncertainty_df['lower_bound']
+    # bounds_df['prediction'] = test_uncertainty_df['value_mean']
+    # bounds_df['real_value'] = truth_uncertainty_plot_df['value']
+    bounds_df['upper_bound'] = test_uncertainty_df['upper_bound']
+    # pdb.set_trace()
+
+    bounds_df['contained'] = (bounds_df['upper_bound'] >= anomaly_score_eig.squeeze())
+
+    print("Proportion of points contained within 99% confidence interval:",
+          bounds_df['contained'].mean())
+    # pdb.set_trace()
+    predictedanomaly = bounds_df.index[~bounds_df['contained']]
+    # pdb.set_trace()
+
+    model.train_score = train_scores_total
+    model.test_score = test_scores_total
+    # model.train_score_MC = train_score_MC
+    # model.test_score_MC = test_score_MC
+    training_df = pd.DataFrame()
+    testing_df = pd.DataFrame()
+    training_truth_df = pd.DataFrame()
+    testing_truth_df = pd.DataFrame()
+
+    #        training_df['value'] = train_MC_predict_point[0]
+    #        training_df['index'] = training_df.index
+    #       training_df['source'] = 'Training Prediction'
+    #       testing_df['value'] = test_MC_predict_point[0]
+    #      testing_df['index'] = testing_df.index
+    #     testing_df['source'] = 'Test Prediction'
+    #    training_truth_df['value'] = train_y[0]
+    #    training_truth_df['index'] = training_truth_df.index
+    #    training_truth_df['source'] = 'True Value Training'
+    #    testing_truth_df['value'] = test_y[0]
+    #    testing_truth_df['index'] = testing_truth_df.index
+    #    testing_truth_df['source'] = 'True Value Testing'
+    # pdb.set_trace()
+
+    #   evaluation = pd.concat([training_df,
+    #                          testing_df,
+    #                         training_truth_df,
+    #                        testing_truth_df
+    #                       ], axis=0)
+
+    predictedanomaly = bounds_df.index[~bounds_df['contained']]
+    # N = Nmax_gen(predictedanomaly, test_uncertainty_df, truth_uncertainty_plot_df, label_data, name)
+
+    N = 3
+    newarr = []
+    predictedanomaly = predictedanomaly.sort_values()
+
+    for i in range(len(predictedanomaly) - N):
+        if (predictedanomaly[i] + 1 == predictedanomaly[i + 1] and predictedanomaly[i + 1] + 1 ==
+                predictedanomaly[
+                    i + 2]):
+            newarr.append(predictedanomaly[i])
+
+    predicteddanomaly = list(set(newarr))
+
+    predicter = list(range(len(test_uncertainty_df)))
+    # pdb.set_trace()
+
+    precision, recall, Accuracy, F1 = score(label_data, predicteddanomaly, test_predict)
+    # pdb.set_trace()
+
+    model.train_score_MC = train_scores
+    model.test_score_MC = test_scores
+    model.train_score = train_scores_total
+    model.test_score = test_scores_total
+    model.train_predict = train_predict
+    model.test_predict = test_predict
+    model.test_MC_predict = test_predict
+    model.test_MC_predict_point = test_predict
+    model.train_MC_predict = train_predict
+    model.train_MC_predict_point = train_predict
+    model.test_MC_predict_var = vari
+    model.train_MC_predict_var = vari
+    model.predictedanomaly = predictedanomaly
+    model.train_time = train_time
+    model.test_time = test_time
+    tensorflow.compat.v1.trainable_variables(
+        scope=None
+    )
+    model.trainable_parameters = np.sum(
+        [np.prod(v.get_shape().as_list()) for v in tensorflow.compat.v1.trainable_variables()])
+
+    return model, train_scores, test_scores, train_scores, test_scores, train_predict, test_predict, test_predict, test_predict, train_predict, train_predict, vari, vari, predictedanomaly, precision, recall, Accuracy, F1

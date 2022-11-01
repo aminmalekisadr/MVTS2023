@@ -30,7 +30,7 @@ def main():
     logging.basicConfig(level="INFO")
 
     # Load the .yaml data
-    assert len(sys.argv) == 3, "Exactly one experiment configuration file must be " \
+    assert len(sys.argv) == 4, "Exactly one experiment configuration file must be " \
                                "passed as a positional argument to this script. \n\n" \
                                "E.g. `python preprocess_dataset.py <path to .yaml file>`"
     with open(sys.argv[1], "r") as yaml_config_file:
@@ -146,7 +146,7 @@ def main():
             #            pdb.set_trace()
             # current direcrory
             getcwd = os.getcwd()
-            smd_path = getcwd + "\data\ServerMachineDataset\processed"
+            smd_path = getcwd + "/data/ServerMachineDataset/processed"
             f = open(os.path.join(smd_path, name[:-4] + '_train.pkl'), "rb")
             train_start = 0
             train_data = pickle.load(f).reshape((-1, x_dim))
@@ -243,7 +243,7 @@ def main():
 
         #  pdb.set_trace()
 
-        dict_ensemble = evaluate_ga('/csv/' + name[:-4] + '.csv', labels, train_data, test_data)
+        dict_ensemble = evaluate_ga('/csv/' + name[:-4] + '.csv', labels, train_data, test_data, sys.argv[3])
 
         # pdb.set_trace()
 
@@ -273,7 +273,7 @@ def main():
         # dict_ensemble['F1_voting'] = F11_voting
 
         # results=pd.DataFrame.from_dict(dict_ensemble)
-        pd.DataFrame([dict_ensemble]).to_csv('results/' + name + '.csv', index=False)
+        pd.DataFrame([dict_ensemble]).to_csv(  name + sys.argv[3] + '.csv', index=False)
         # pdb.set_trace()
 
         # precision_rf.append(precision1_rf)

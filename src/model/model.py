@@ -56,14 +56,13 @@ def generate_rnn(hidden_layers, input_shape):
     :param hidden_layers:
     :return:
     """
-    import pdb
 
     # Create and fit the RNN
     model = Sequential()
     # model.add(LSTM(50, input_shape=(train_X.shape[1], train_X.shape[2])))
     # Add input layer
     model.add(Dense(500, input_shape=(input_shape, experiment_config['data_parameters']['look_back'])))
-    pdb.set_trace()
+    # pdb.set_trace()
     # Add hidden layers
     for i in range(len(hidden_layers)):
 
