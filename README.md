@@ -10,7 +10,7 @@ main.py contains the code of our proposed  Anomaly detection method.
 
 ## Papers:
 The source code for the paper titled "Genetic Algorithm Guided Ensemble of Neural
-Networks for Satellite Anomaly Detection", submitted to IEEE Trans. on Aerospace and Electronic Systems, March 2022.
+Networks for Satellite Anomaly Detection", submitted to IEEE Trans. on Aerospace and Electronic Systems, Nov 2023.
 ### Citation:
 There are one main citations for this work.
 
@@ -22,8 +22,8 @@ By default, consider using the following:
   title="{Genetic Algorithm Guided Ensemble of Neural
 Networks for Satellite Anomaly Detection}",
   journal="IEEE Transactions on Aerospace and Electronic Systems ",
-  year="2022",
-  month="March",
+  year="2023",
+  month="Nov",
   day="13",
 }
 ```
@@ -61,13 +61,16 @@ pip3 install -e Genetic-Algorithm-Guided-Satellite-Anomaly-Detection/
 pip3 install -r Genetic-Algorithm-Guided-Satellite-Anomaly-Detection/requirements.txt
 ```
 
-### Dataset
-We use the satellite telemetry data from NASA. The dataset comes from two spacecrafts: the Soil Moisture Active Passive satellite (SMAP) and the Curiosity Rover on Mars (MSL).
-There are 82 signals available in the NASA dataset. We found that 54 of the 82 signals  to be continuous by inspection, and the remaining signals were discrete.  We only consider the time-series sequences from the telemetry signals in our evaluation, where the telemetry values can be discrete or continues in these signals.
 
-The dataset is available [here](https://s3-us-west-2.amazonaws.com/telemanom/data.zip). If the link is broken or something is not working properly, please contact me through email (aminmalekisadr@gmail.com).
+
+### Dataset
+
+We use the SMD data. The dataset is available [here](https://s3-us-west-2.amazonaws.com/telemanom/data.zip). If the link is broken or something is not working properly, please contact me through email (aminmalekisadr@gmail.com).
 ## Experiments
 ### Configuration
+Please run the following command at your terminal:
+python main.py   path_to_config_file  dataset_name  Dimensional_reduction_name 
+
 
  These parameters are used to setup the Genetic Algorithm, Recurrent Neural Networks and Random Forests, MC dropout used in training for the model.
  
