@@ -69,8 +69,9 @@ We use the SMD data. The dataset is available [here](https://s3-us-west-2.amazon
 ## Experiments
 ### Configuration
 Please run the following command at your terminal:
+```
 python main.py   path_to_config_file  dataset_name  Dimensional_reduction_name 
-
+```
 
  These parameters are used to setup the Genetic Algorithm, Recurrent Neural Networks and Random Forests, MC dropout used in training for the model.
  
