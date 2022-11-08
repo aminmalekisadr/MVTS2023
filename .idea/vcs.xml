@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MVVGE" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MVVGE/mvts-ano-eval" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MVVGE/randomForestCI" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mvts-ano-eval" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/randomForestCI" vcs="Git" />
+  </component>
+</project>

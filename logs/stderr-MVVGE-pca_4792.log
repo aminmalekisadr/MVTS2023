@@ -1,0 +1,33 @@
+
+PackagesNotFoundError: The following packages are not available from current channels:
+
+  - panda
+
+Current channels:
+
+  - https://conda.anaconda.org/conda-forge/linux-64
+  - https://conda.anaconda.org/conda-forge/noarch
+  - https://conda.anaconda.org/anaconda/linux-64
+  - https://conda.anaconda.org/anaconda/noarch
+  - https://conda.anaconda.org/nvidia/linux-64
+  - https://conda.anaconda.org/nvidia/noarch
+  - https://repo.anaconda.com/pkgs/main/linux-64
+  - https://repo.anaconda.com/pkgs/main/noarch
+  - https://repo.anaconda.com/pkgs/r/linux-64
+  - https://repo.anaconda.com/pkgs/r/noarch
+
+To search for alternate channels that may provide the conda package you're
+looking for, navigate to
+
+    https://anaconda.org
+
+and use the search bar at the top of the page.
+
+
+Could not find conda environment: gpu100
+You can list all discoverable environments with `conda info --envs`.
+
+Traceback (most recent call last):
+  File "main.py", line 11, in <module>
+    isort.file("main.py")
+AttributeError: module 'isort' has no attribute 'file'
