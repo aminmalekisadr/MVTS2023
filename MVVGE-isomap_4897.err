@@ -1,2 +1,0 @@
-/opt/uw/slurm/22.05.2/var/spool/slurmd.spool/job04897/slurm_script: line 25:  8871 Killed                  python main.py experiments/Config.yaml SMD tsne
-slurmstepd: error: Detected 1 oom-kill event(s) in StepId=4897.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.

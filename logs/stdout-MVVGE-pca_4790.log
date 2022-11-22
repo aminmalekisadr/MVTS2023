@@ -1,326 +1,0 @@
-Cuda device: 0
-======= Start memory test =======
-CHK_ENV: 
-tf_env3 doesn't exist, create it...
-Collecting package metadata (current_repodata.json): ...working... done
-Solving environment: ...working... failed with repodata from current_repodata.json, will retry with next repodata source.
-Collecting package metadata (repodata.json): ...working... done
-Solving environment: ...working... done
-
-## Package Plan ##
-
-  environment location: /work/mmalekis/.conda/envs/tf_env3
-
-  added / updated specs:
-    - cudatoolkit
-    - python=3.6
-    - tensorflow-gpu
-
-
-The following packages will be downloaded:
-
-    package                    |            build
-    ---------------------------|-----------------
-    _libgcc_mutex-0.1          |             main           3 KB  anaconda
-    _openmp_mutex-5.1          |            1_gnu          20 KB  anaconda
-    _tflow_select-2.1.0        |              gpu           2 KB  anaconda
-    absl-py-0.15.0             |     pyhd3eb1b0_0          98 KB  anaconda
-    aiohttp-3.7.4.post0        |   py36h7f8727e_2         638 KB  anaconda
-    astor-0.8.1                |   py36h06a4308_0          45 KB  anaconda
-    astunparse-1.6.3           |             py_0          17 KB  anaconda
-    async-timeout-3.0.1        |   py36h06a4308_0          13 KB  anaconda
-    attrs-21.4.0               |     pyhd3eb1b0_0          49 KB  anaconda
-    blas-1.0                   |              mkl           6 KB  anaconda
-    blinker-1.4                |   py36h06a4308_0          23 KB  anaconda
-    brotlipy-0.7.0             |py36h27cfd23_1003         349 KB  anaconda
-    c-ares-1.18.1              |       h7f8727e_0         119 KB  anaconda
-    ca-certificates-2022.07.19 |       h06a4308_0         131 KB  anaconda
-    cachetools-4.2.2           |     pyhd3eb1b0_0          13 KB  anaconda
-    certifi-2021.5.30          |   py36h06a4308_0         141 KB  anaconda
-    cffi-1.14.6                |   py36h400218f_0         224 KB  anaconda
-    chardet-4.0.0              |py36h06a4308_1003         213 KB  anaconda
-    charset-normalizer-2.0.4   |     pyhd3eb1b0_0          33 KB  anaconda
-    click-8.0.3                |     pyhd3eb1b0_0          73 KB  anaconda
-    coverage-5.5               |   py36h27cfd23_2         255 KB  anaconda
-    cryptography-35.0.0        |   py36hd23ed53_0         1.5 MB  anaconda
-    cudatoolkit-10.1.243       |       h6bb024c_0       513.2 MB  anaconda
-    cudnn-7.6.5                |       cuda10.1_0       250.6 MB  anaconda
-    cupti-10.1.168             |                0         1.7 MB  anaconda
-    cython-0.29.24             |   py36h295c915_0         2.1 MB  anaconda
-    dataclasses-0.8            |     pyh4f3eec9_6          22 KB  anaconda
-    gast-0.3.3                 |             py_0          14 KB  anaconda
-    google-auth-2.6.0          |     pyhd3eb1b0_0          83 KB  anaconda
-    google-auth-oauthlib-0.4.4 |     pyhd3eb1b0_0          19 KB  anaconda
-    google-pasta-0.2.0         |     pyhd3eb1b0_0          43 KB  anaconda
-    grpcio-1.36.1              |   py36h2157cd5_1         2.0 MB  anaconda
-    h5py-2.10.0                |   py36hd6299e0_1         1.1 MB  anaconda
-    hdf5-1.10.6                |       hb1b8bf9_0         4.8 MB  anaconda
-    idna-3.3                   |     pyhd3eb1b0_0          55 KB  anaconda
-    idna_ssl-1.1.0             |   py36h06a4308_0           8 KB  anaconda
-    importlib-metadata-4.8.1   |   py36h06a4308_0          38 KB  anaconda
-    intel-openmp-2022.0.1      |    h06a4308_3633         8.5 MB  anaconda
-    keras-preprocessing-1.1.2  |     pyhd3eb1b0_0          35 KB  anaconda
-    ld_impl_linux-64-2.38      |       h1181459_1         732 KB  anaconda
-    libffi-3.3                 |       he6710b0_2          54 KB  anaconda
-    libgcc-ng-11.2.0           |       h1234567_1         8.5 MB  anaconda
-    libgfortran-ng-7.5.0       |      ha8ba4b0_17          22 KB  anaconda
-    libgfortran4-7.5.0         |      ha8ba4b0_17         1.3 MB  anaconda
-    libgomp-11.2.0             |       h1234567_1         560 KB  anaconda
-    libprotobuf-3.17.2         |       h4ff587b_1         2.4 MB  anaconda
-    libstdcxx-ng-11.2.0        |       h1234567_1         6.1 MB  anaconda
-    markdown-3.3.4             |   py36h06a4308_0         125 KB  anaconda
-    mkl-2019.4                 |              243       204.1 MB  anaconda
-    mkl-service-2.3.0          |   py36he8ac12f_0          56 KB  anaconda
-    mkl_fft-1.3.0              |   py36h54f3939_0         185 KB  anaconda
-    mkl_random-1.1.0           |   py36hd6b4f25_0         369 KB  anaconda
-    multidict-5.1.0            |   py36h27cfd23_2          70 KB  anaconda
-    ncurses-6.3                |       h5eee18b_3         1.1 MB  anaconda
-    numpy-1.19.2               |   py36h54aff64_0          21 KB  anaconda
-    numpy-base-1.19.2          |   py36hfa32c7d_0         5.2 MB  anaconda
-    oauthlib-3.1.0             |             py_0          88 KB  anaconda
-    openssl-1.1.1q             |       h7f8727e_0         3.8 MB  anaconda
-    opt_einsum-3.3.0           |     pyhd3eb1b0_1          57 KB  anaconda
-    pip-21.2.2                 |   py36h06a4308_0         2.1 MB  anaconda
-    protobuf-3.17.2            |   py36h295c915_0         354 KB  anaconda
-    pyasn1-0.4.8               |     pyhd3eb1b0_0          54 KB  anaconda
-    pyasn1-modules-0.2.8       |             py_0          67 KB  anaconda
-    pycparser-2.21             |     pyhd3eb1b0_0          94 KB  anaconda
-    pyjwt-1.7.1                |           py36_0          32 KB  anaconda
-    pyopenssl-22.0.0           |     pyhd3eb1b0_0          49 KB  anaconda
-    pysocks-1.7.1              |   py36h06a4308_0          30 KB  anaconda
-    python-3.6.13              |       h12debd9_1        32.5 MB  anaconda
-    readline-8.1.2             |       h7f8727e_1         423 KB  anaconda
-    requests-2.27.1            |     pyhd3eb1b0_0          52 KB  anaconda
-    requests-oauthlib-1.3.0    |             py_0          22 KB  anaconda
-    rsa-4.7.2                  |     pyhd3eb1b0_1          28 KB  anaconda
-    scipy-1.5.2                |   py36h0b6359f_0        18.5 MB  anaconda
-    setuptools-58.0.4          |   py36h06a4308_0         979 KB  anaconda
-    six-1.16.0                 |     pyhd3eb1b0_1          19 KB  anaconda
-    sqlite-3.39.2              |       h5082296_0         1.5 MB  anaconda
-    tensorboard-2.4.0          |     pyhc547734_0         8.8 MB  anaconda
-    tensorboard-plugin-wit-1.6.0|             py_0         663 KB  anaconda
-    tensorflow-2.2.0           |gpu_py36hf933387_0           4 KB  anaconda
-    tensorflow-base-2.2.0      |gpu_py36h8a81be8_0       421.7 MB  anaconda
-    tensorflow-estimator-2.6.0 |     pyh7b7c402_0         288 KB  anaconda
-    tensorflow-gpu-2.2.0       |       h0d30ee6_0           2 KB  anaconda
-    termcolor-1.1.0            |   py36h06a4308_1           9 KB  anaconda
-    tk-8.6.12                  |       h1ccaba5_0         3.3 MB  anaconda
-    typing-extensions-4.1.1    |       hd3eb1b0_0           8 KB  anaconda
-    typing_extensions-4.1.1    |     pyh06a4308_0          29 KB  anaconda
-    urllib3-1.26.8             |     pyhd3eb1b0_0         100 KB  anaconda
-    werkzeug-2.0.3             |     pyhd3eb1b0_0         220 KB  anaconda
-    wheel-0.37.1               |     pyhd3eb1b0_0          31 KB  anaconda
-    wrapt-1.12.1               |   py36h7b6447c_1          49 KB  anaconda
-    xz-5.2.5                   |       h7f8727e_1         389 KB  anaconda
-    yarl-1.6.3                 |   py36h27cfd23_0         139 KB  anaconda
-    zipp-3.6.0                 |     pyhd3eb1b0_0          16 KB  anaconda
-    zlib-1.2.12                |       h7f8727e_2         130 KB  anaconda
-    ------------------------------------------------------------
-                                           Total:        1.48 GB
-
-The following NEW packages will be INSTALLED:
-
-  _libgcc_mutex      anaconda/linux-64::_libgcc_mutex-0.1-main
-  _openmp_mutex      anaconda/linux-64::_openmp_mutex-5.1-1_gnu
-  _tflow_select      anaconda/linux-64::_tflow_select-2.1.0-gpu
-  absl-py            anaconda/noarch::absl-py-0.15.0-pyhd3eb1b0_0
-  aiohttp            anaconda/linux-64::aiohttp-3.7.4.post0-py36h7f8727e_2
-  astor              anaconda/linux-64::astor-0.8.1-py36h06a4308_0
-  astunparse         anaconda/noarch::astunparse-1.6.3-py_0
-  async-timeout      anaconda/linux-64::async-timeout-3.0.1-py36h06a4308_0
-  attrs              anaconda/noarch::attrs-21.4.0-pyhd3eb1b0_0
-  blas               anaconda/linux-64::blas-1.0-mkl
-  blinker            anaconda/linux-64::blinker-1.4-py36h06a4308_0
-  brotlipy           anaconda/linux-64::brotlipy-0.7.0-py36h27cfd23_1003
-  c-ares             anaconda/linux-64::c-ares-1.18.1-h7f8727e_0
-  ca-certificates    anaconda/linux-64::ca-certificates-2022.07.19-h06a4308_0
-  cachetools         anaconda/noarch::cachetools-4.2.2-pyhd3eb1b0_0
-  certifi            anaconda/linux-64::certifi-2021.5.30-py36h06a4308_0
-  cffi               anaconda/linux-64::cffi-1.14.6-py36h400218f_0
-  chardet            anaconda/linux-64::chardet-4.0.0-py36h06a4308_1003
-  charset-normalizer anaconda/noarch::charset-normalizer-2.0.4-pyhd3eb1b0_0
-  click              anaconda/noarch::click-8.0.3-pyhd3eb1b0_0
-  coverage           anaconda/linux-64::coverage-5.5-py36h27cfd23_2
-  cryptography       anaconda/linux-64::cryptography-35.0.0-py36hd23ed53_0
-  cudatoolkit        anaconda/linux-64::cudatoolkit-10.1.243-h6bb024c_0
-  cudnn              anaconda/linux-64::cudnn-7.6.5-cuda10.1_0
-  cupti              anaconda/linux-64::cupti-10.1.168-0
-  cython             anaconda/linux-64::cython-0.29.24-py36h295c915_0
-  dataclasses        anaconda/noarch::dataclasses-0.8-pyh4f3eec9_6
-  gast               anaconda/noarch::gast-0.3.3-py_0
-  google-auth        anaconda/noarch::google-auth-2.6.0-pyhd3eb1b0_0
-  google-auth-oauth~ anaconda/noarch::google-auth-oauthlib-0.4.4-pyhd3eb1b0_0
-  google-pasta       anaconda/noarch::google-pasta-0.2.0-pyhd3eb1b0_0
-  grpcio             anaconda/linux-64::grpcio-1.36.1-py36h2157cd5_1
-  h5py               anaconda/linux-64::h5py-2.10.0-py36hd6299e0_1
-  hdf5               anaconda/linux-64::hdf5-1.10.6-hb1b8bf9_0
-  idna               anaconda/noarch::idna-3.3-pyhd3eb1b0_0
-  idna_ssl           anaconda/linux-64::idna_ssl-1.1.0-py36h06a4308_0
-  importlib-metadata anaconda/linux-64::importlib-metadata-4.8.1-py36h06a4308_0
-  intel-openmp       anaconda/linux-64::intel-openmp-2022.0.1-h06a4308_3633
-  keras-preprocessi~ anaconda/noarch::keras-preprocessing-1.1.2-pyhd3eb1b0_0
-  ld_impl_linux-64   anaconda/linux-64::ld_impl_linux-64-2.38-h1181459_1
-  libffi             anaconda/linux-64::libffi-3.3-he6710b0_2
-  libgcc-ng          anaconda/linux-64::libgcc-ng-11.2.0-h1234567_1
-  libgfortran-ng     anaconda/linux-64::libgfortran-ng-7.5.0-ha8ba4b0_17
-  libgfortran4       anaconda/linux-64::libgfortran4-7.5.0-ha8ba4b0_17
-  libgomp            anaconda/linux-64::libgomp-11.2.0-h1234567_1
-  libprotobuf        anaconda/linux-64::libprotobuf-3.17.2-h4ff587b_1
-  libstdcxx-ng       anaconda/linux-64::libstdcxx-ng-11.2.0-h1234567_1
-  markdown           anaconda/linux-64::markdown-3.3.4-py36h06a4308_0
-  mkl                anaconda/linux-64::mkl-2019.4-243
-  mkl-service        anaconda/linux-64::mkl-service-2.3.0-py36he8ac12f_0
-  mkl_fft            anaconda/linux-64::mkl_fft-1.3.0-py36h54f3939_0
-  mkl_random         anaconda/linux-64::mkl_random-1.1.0-py36hd6b4f25_0
-  multidict          anaconda/linux-64::multidict-5.1.0-py36h27cfd23_2
-  ncurses            anaconda/linux-64::ncurses-6.3-h5eee18b_3
-  numpy              anaconda/linux-64::numpy-1.19.2-py36h54aff64_0
-  numpy-base         anaconda/linux-64::numpy-base-1.19.2-py36hfa32c7d_0
-  oauthlib           anaconda/noarch::oauthlib-3.1.0-py_0
-  openssl            anaconda/linux-64::openssl-1.1.1q-h7f8727e_0
-  opt_einsum         anaconda/noarch::opt_einsum-3.3.0-pyhd3eb1b0_1
-  pip                anaconda/linux-64::pip-21.2.2-py36h06a4308_0
-  protobuf           anaconda/linux-64::protobuf-3.17.2-py36h295c915_0
-  pyasn1             anaconda/noarch::pyasn1-0.4.8-pyhd3eb1b0_0
-  pyasn1-modules     anaconda/noarch::pyasn1-modules-0.2.8-py_0
-  pycparser          anaconda/noarch::pycparser-2.21-pyhd3eb1b0_0
-  pyjwt              anaconda/linux-64::pyjwt-1.7.1-py36_0
-  pyopenssl          anaconda/noarch::pyopenssl-22.0.0-pyhd3eb1b0_0
-  pysocks            anaconda/linux-64::pysocks-1.7.1-py36h06a4308_0
-  python             anaconda/linux-64::python-3.6.13-h12debd9_1
-  readline           anaconda/linux-64::readline-8.1.2-h7f8727e_1
-  requests           anaconda/noarch::requests-2.27.1-pyhd3eb1b0_0
-  requests-oauthlib  anaconda/noarch::requests-oauthlib-1.3.0-py_0
-  rsa                anaconda/noarch::rsa-4.7.2-pyhd3eb1b0_1
-  scipy              anaconda/linux-64::scipy-1.5.2-py36h0b6359f_0
-  setuptools         anaconda/linux-64::setuptools-58.0.4-py36h06a4308_0
-  six                anaconda/noarch::six-1.16.0-pyhd3eb1b0_1
-  sqlite             anaconda/linux-64::sqlite-3.39.2-h5082296_0
-  tensorboard        anaconda/noarch::tensorboard-2.4.0-pyhc547734_0
-  tensorboard-plugi~ anaconda/noarch::tensorboard-plugin-wit-1.6.0-py_0
-  tensorflow         anaconda/linux-64::tensorflow-2.2.0-gpu_py36hf933387_0
-  tensorflow-base    anaconda/linux-64::tensorflow-base-2.2.0-gpu_py36h8a81be8_0
-  tensorflow-estima~ anaconda/noarch::tensorflow-estimator-2.6.0-pyh7b7c402_0
-  tensorflow-gpu     anaconda/linux-64::tensorflow-gpu-2.2.0-h0d30ee6_0
-  termcolor          anaconda/linux-64::termcolor-1.1.0-py36h06a4308_1
-  tk                 anaconda/linux-64::tk-8.6.12-h1ccaba5_0
-  typing-extensions  anaconda/noarch::typing-extensions-4.1.1-hd3eb1b0_0
-  typing_extensions  anaconda/noarch::typing_extensions-4.1.1-pyh06a4308_0
-  urllib3            anaconda/noarch::urllib3-1.26.8-pyhd3eb1b0_0
-  werkzeug           anaconda/noarch::werkzeug-2.0.3-pyhd3eb1b0_0
-  wheel              anaconda/noarch::wheel-0.37.1-pyhd3eb1b0_0
-  wrapt              anaconda/linux-64::wrapt-1.12.1-py36h7b6447c_1
-  xz                 anaconda/linux-64::xz-5.2.5-h7f8727e_1
-  yarl               anaconda/linux-64::yarl-1.6.3-py36h27cfd23_0
-  zipp               anaconda/noarch::zipp-3.6.0-pyhd3eb1b0_0
-  zlib               anaconda/linux-64::zlib-1.2.12-h7f8727e_2
-
-
-
-Downloading and Extracting Packages
-openssl-1.1.1q       | 3.8 MB    |            |   0% openssl-1.1.1q       | 3.8 MB    |            |   0% openssl-1.1.1q       | 3.8 MB    | #####5     |  55% openssl-1.1.1q       | 3.8 MB    | ########## | 100% openssl-1.1.1q       | 3.8 MB    | ########## | 100% 
-termcolor-1.1.0      | 9 KB      |            |   0% termcolor-1.1.0      | 9 KB      | ########## | 100% termcolor-1.1.0      | 9 KB      | ########## | 100% 
-opt_einsum-3.3.0     | 57 KB     |            |   0% opt_einsum-3.3.0     | 57 KB     | ########## | 100% opt_einsum-3.3.0     | 57 KB     | ########## | 100% 
-tensorflow-estimator | 288 KB    |            |   0% tensorflow-estimator | 288 KB    | ########## | 100% tensorflow-estimator | 288 KB    | ########## | 100% 
-astunparse-1.6.3     | 17 KB     |            |   0% astunparse-1.6.3     | 17 KB     | ########## | 100% astunparse-1.6.3     | 17 KB     | ########## | 100% 
-c-ares-1.18.1        | 119 KB    |            |   0% c-ares-1.18.1        | 119 KB    | ########## | 100% c-ares-1.18.1        | 119 KB    | ########## | 100% 
-ld_impl_linux-64-2.3 | 732 KB    |            |   0% ld_impl_linux-64-2.3 | 732 KB    | 2          |   2% ld_impl_linux-64-2.3 | 732 KB    | ########## | 100% ld_impl_linux-64-2.3 | 732 KB    | ########## | 100% 
-google-auth-2.6.0    | 83 KB     |            |   0% google-auth-2.6.0    | 83 KB     | #9         |  19% google-auth-2.6.0    | 83 KB     | ########## | 100% google-auth-2.6.0    | 83 KB     | ########## | 100% 
-scipy-1.5.2          | 18.5 MB   |            |   0% scipy-1.5.2          | 18.5 MB   | 4          |   5% scipy-1.5.2          | 18.5 MB   | ##         |  21% scipy-1.5.2          | 18.5 MB   | ###2       |  33% scipy-1.5.2          | 18.5 MB   | ####9      |  50% scipy-1.5.2          | 18.5 MB   | ######     |  60% scipy-1.5.2          | 18.5 MB   | #######    |  70% scipy-1.5.2          | 18.5 MB   | ########6  |  87% scipy-1.5.2          | 18.5 MB   | ########## | 100% scipy-1.5.2          | 18.5 MB   | ########## | 100% 
-hdf5-1.10.6          | 4.8 MB    |            |   0% hdf5-1.10.6          | 4.8 MB    | ##4        |  25% hdf5-1.10.6          | 4.8 MB    | #######8   |  79% hdf5-1.10.6          | 4.8 MB    | ########## | 100% 
-cryptography-35.0.0  | 1.5 MB    |            |   0% cryptography-35.0.0  | 1.5 MB    | 1          |   1% cryptography-35.0.0  | 1.5 MB    | ########## | 100% cryptography-35.0.0  | 1.5 MB    | ########## | 100% 
-blas-1.0             | 6 KB      |            |   0% blas-1.0             | 6 KB      | ########## | 100% 
-tk-8.6.12            | 3.3 MB    |            |   0% tk-8.6.12            | 3.3 MB    | ###5       |  35% tk-8.6.12            | 3.3 MB    | ########## | 100% tk-8.6.12            | 3.3 MB    | ########## | 100% 
-mkl-2019.4           | 204.1 MB  |            |   0% mkl-2019.4           | 204.1 MB  |            |   1% mkl-2019.4           | 204.1 MB  | 1          |   2% mkl-2019.4           | 204.1 MB  | 3          |   3% mkl-2019.4           | 204.1 MB  | 4          |   4% mkl-2019.4           | 204.1 MB  | 5          |   6% mkl-2019.4           | 204.1 MB  | 7          |   7% mkl-2019.4           | 204.1 MB  | 8          |   8% mkl-2019.4           | 204.1 MB  | 9          |  10% mkl-2019.4           | 204.1 MB  | #1         |  11% mkl-2019.4           | 204.1 MB  | #2         |  13% mkl-2019.4           | 204.1 MB  | #4         |  14% mkl-2019.4           | 204.1 MB  | #5         |  15% mkl-2019.4           | 204.1 MB  | #6         |  17% mkl-2019.4           | 204.1 MB  | #9         |  20% mkl-2019.4           | 204.1 MB  | ##1        |  21% mkl-2019.4           | 204.1 MB  | ##4        |  24% mkl-2019.4           | 204.1 MB  | ##8        |  29% mkl-2019.4           | 204.1 MB  | ###2       |  33% mkl-2019.4           | 204.1 MB  | ###6       |  37% mkl-2019.4           | 204.1 MB  | ###9       |  40% mkl-2019.4           | 204.1 MB  | ####3      |  43% mkl-2019.4           | 204.1 MB  | ####6      |  46% mkl-2019.4           | 204.1 MB  | ####8      |  49% mkl-2019.4           | 204.1 MB  | #####1     |  51% mkl-2019.4           | 204.1 MB  | #####3     |  53% mkl-2019.4           | 204.1 MB  | #####6     |  56% mkl-2019.4           | 204.1 MB  | #####9     |  60% mkl-2019.4           | 204.1 MB  | ######2    |  62% mkl-2019.4           | 204.1 MB  | ######4    |  64% mkl-2019.4           | 204.1 MB  | ######6    |  66% mkl-2019.4           | 204.1 MB  | ######7    |  67% mkl-2019.4           | 204.1 MB  | ######8    |  68% mkl-2019.4           | 204.1 MB  | ######9    |  70% mkl-2019.4           | 204.1 MB  | #######3   |  73% mkl-2019.4           | 204.1 MB  | #######6   |  76% mkl-2019.4           | 204.1 MB  | #######8   |  78% mkl-2019.4           | 204.1 MB  | ########   |  80% mkl-2019.4           | 204.1 MB  | ########2  |  83% mkl-2019.4           | 204.1 MB  | ########4  |  85% mkl-2019.4           | 204.1 MB  | ########8  |  89% mkl-2019.4           | 204.1 MB  | #########1 |  91% mkl-2019.4           | 204.1 MB  | #########3 |  94% mkl-2019.4           | 204.1 MB  | #########6 |  96% mkl-2019.4           | 204.1 MB  | #########8 |  99% mkl-2019.4           | 204.1 MB  | ########## | 100% 
-libgfortran-ng-7.5.0 | 22 KB     |            |   0% libgfortran-ng-7.5.0 | 22 KB     | ########## | 100% libgfortran-ng-7.5.0 | 22 KB     | ########## | 100% 
-tensorflow-2.2.0     | 4 KB      |            |   0% tensorflow-2.2.0     | 4 KB      | ########## | 100% tensorflow-2.2.0     | 4 KB      | ########## | 100% 
-absl-py-0.15.0       | 98 KB     |            |   0% absl-py-0.15.0       | 98 KB     | ########## | 100% absl-py-0.15.0       | 98 KB     | ########## | 100% 
-pip-21.2.2           | 2.1 MB    |            |   0% pip-21.2.2           | 2.1 MB    | #########9 |  99% pip-21.2.2           | 2.1 MB    | ########## | 100% 
-ncurses-6.3          | 1.1 MB    |            |   0% ncurses-6.3          | 1.1 MB    | ########## | 100% ncurses-6.3          | 1.1 MB    | ########## | 100% 
-libgcc-ng-11.2.0     | 8.5 MB    |            |   0% libgcc-ng-11.2.0     | 8.5 MB    | ####1      |  42% libgcc-ng-11.2.0     | 8.5 MB    | ########## | 100% libgcc-ng-11.2.0     | 8.5 MB    | ########## | 100% 
-mkl_fft-1.3.0        | 185 KB    |            |   0% mkl_fft-1.3.0        | 185 KB    | 8          |   9% mkl_fft-1.3.0        | 185 KB    | ########## | 100% mkl_fft-1.3.0        | 185 KB    | ########## | 100% 
-libstdcxx-ng-11.2.0  | 6.1 MB    |            |   0% libstdcxx-ng-11.2.0  | 6.1 MB    | ######7    |  68% libstdcxx-ng-11.2.0  | 6.1 MB    | ########## | 100% libstdcxx-ng-11.2.0  | 6.1 MB    | ########## | 100% 
-requests-2.27.1      | 52 KB     |            |   0% requests-2.27.1      | 52 KB     | ########## | 100% requests-2.27.1      | 52 KB     | ########## | 100% 
-pycparser-2.21       | 94 KB     |            |   0% pycparser-2.21       | 94 KB     | ########## | 100% pycparser-2.21       | 94 KB     | ########## | 100% 
-keras-preprocessing- | 35 KB     |            |   0% keras-preprocessing- | 35 KB     | ########## | 100% keras-preprocessing- | 35 KB     | ########## | 100% 
-cython-0.29.24       | 2.1 MB    |            |   0% cython-0.29.24       | 2.1 MB    | #3         |  14% cython-0.29.24       | 2.1 MB    | #######8   |  78% cython-0.29.24       | 2.1 MB    | ########## | 100% cython-0.29.24       | 2.1 MB    | ########## | 100% 
-multidict-5.1.0      | 70 KB     |            |   0% multidict-5.1.0      | 70 KB     | ########## | 100% multidict-5.1.0      | 70 KB     | ########## | 100% 
-urllib3-1.26.8       | 100 KB    |            |   0% urllib3-1.26.8       | 100 KB    | #5         |  16% urllib3-1.26.8       | 100 KB    | ########## | 100% urllib3-1.26.8       | 100 KB    | ########## | 100% 
-wheel-0.37.1         | 31 KB     |            |   0% wheel-0.37.1         | 31 KB     | ########## | 100% wheel-0.37.1         | 31 KB     | ########## | 100% 
-_tflow_select-2.1.0  | 2 KB      |            |   0% _tflow_select-2.1.0  | 2 KB      | ########## | 100% _tflow_select-2.1.0  | 2 KB      | ########## | 100% 
-numpy-1.19.2         | 21 KB     |            |   0% numpy-1.19.2         | 21 KB     | #######7   |  78% numpy-1.19.2         | 21 KB     | ########## | 100% 
-cudnn-7.6.5          | 250.6 MB  |            |   0% cudnn-7.6.5          | 250.6 MB  |            |   0% cudnn-7.6.5          | 250.6 MB  |            |   1% cudnn-7.6.5          | 250.6 MB  | 1          |   1% cudnn-7.6.5          | 250.6 MB  | 1          |   2% cudnn-7.6.5          | 250.6 MB  | 2          |   2% cudnn-7.6.5          | 250.6 MB  | 2          |   3% cudnn-7.6.5          | 250.6 MB  | 3          |   3% cudnn-7.6.5          | 250.6 MB  | 3          |   3% cudnn-7.6.5          | 250.6 MB  | 3          |   4% cudnn-7.6.5          | 250.6 MB  | 4          |   4% cudnn-7.6.5          | 250.6 MB  | 4          |   5% cudnn-7.6.5          | 250.6 MB  | 5          |   5% cudnn-7.6.5          | 250.6 MB  | 5          |   6% cudnn-7.6.5          | 250.6 MB  | 6          |   6% cudnn-7.6.5          | 250.6 MB  | 6          |   7% cudnn-7.6.5          | 250.6 MB  | 7          |   7% cudnn-7.6.5          | 250.6 MB  | 8          |   8% cudnn-7.6.5          | 250.6 MB  | 8          |   9% cudnn-7.6.5          | 250.6 MB  | 9          |   9% cudnn-7.6.5          | 250.6 MB  | 9          |  10% cudnn-7.6.5          | 250.6 MB  | 9          |  10% cudnn-7.6.5          | 250.6 MB  | #          |  10% cudnn-7.6.5          | 250.6 MB  | #          |  11% cudnn-7.6.5          | 250.6 MB  | #1         |  12% cudnn-7.6.5          | 250.6 MB  | #2         |  12% cudnn-7.6.5          | 250.6 MB  | #2         |  13% cudnn-7.6.5          | 250.6 MB  | #3         |  14% cudnn-7.6.5          | 250.6 MB  | #4         |  14% cudnn-7.6.5          | 250.6 MB  | #4         |  15% cudnn-7.6.5          | 250.6 MB  | #5         |  15% cudnn-7.6.5          | 250.6 MB  | #5         |  16% cudnn-7.6.5          | 250.6 MB  | #6         |  17% cudnn-7.6.5          | 250.6 MB  | #7         |  17% cudnn-7.6.5          | 250.6 MB  | #8         |  18% cudnn-7.6.5          | 250.6 MB  | #8         |  19% cudnn-7.6.5          | 250.6 MB  | #9         |  19% cudnn-7.6.5          | 250.6 MB  | #9         |  20% cudnn-7.6.5          | 250.6 MB  | ##         |  21% cudnn-7.6.5          | 250.6 MB  | ##1        |  21% cudnn-7.6.5          | 250.6 MB  | ##1        |  22% cudnn-7.6.5          | 250.6 MB  | ##2        |  23% cudnn-7.6.5          | 250.6 MB  | ##3        |  23% cudnn-7.6.5          | 250.6 MB  | ##3        |  24% cudnn-7.6.5          | 250.6 MB  | ##4        |  24% cudnn-7.6.5          | 250.6 MB  | ##5        |  25% cudnn-7.6.5          | 250.6 MB  | ##5        |  26% cudnn-7.6.5          | 250.6 MB  | ##6        |  26% cudnn-7.6.5          | 250.6 MB  | ##6        |  27% cudnn-7.6.5          | 250.6 MB  | ##6        |  27% cudnn-7.6.5          | 250.6 MB  | ##7        |  28% cudnn-7.6.5          | 250.6 MB  | ##8        |  28% cudnn-7.6.5          | 250.6 MB  | ##8        |  29% cudnn-7.6.5          | 250.6 MB  | ##9        |  29% cudnn-7.6.5          | 250.6 MB  | ##9        |  30% cudnn-7.6.5          | 250.6 MB  | ###        |  30% cudnn-7.6.5          | 250.6 MB  | ###        |  31% cudnn-7.6.5          | 250.6 MB  | ###1       |  31% cudnn-7.6.5          | 250.6 MB  | ###1       |  32% cudnn-7.6.5          | 250.6 MB  | ###2       |  32% cudnn-7.6.5          | 250.6 MB  | ###2       |  33% cudnn-7.6.5          | 250.6 MB  | ###3       |  33% cudnn-7.6.5          | 250.6 MB  | ###3       |  33% cudnn-7.6.5          | 250.6 MB  | ###3       |  34% cudnn-7.6.5          | 250.6 MB  | ###4       |  34% cudnn-7.6.5          | 250.6 MB  | ###4       |  35% cudnn-7.6.5          | 250.6 MB  | ###5       |  36% cudnn-7.6.5          | 250.6 MB  | ###6       |  36% cudnn-7.6.5          | 250.6 MB  | ###6       |  37% cudnn-7.6.5          | 250.6 MB  | ###7       |  37% cudnn-7.6.5          | 250.6 MB  | ###7       |  38% cudnn-7.6.5          | 250.6 MB  | ###8       |  38% cudnn-7.6.5          | 250.6 MB  | ###8       |  39% cudnn-7.6.5          | 250.6 MB  | ###9       |  39% cudnn-7.6.5          | 250.6 MB  | ####       |  40% cudnn-7.6.5          | 250.6 MB  | ####       |  41% cudnn-7.6.5          | 250.6 MB  | ####1      |  41% cudnn-7.6.5          | 250.6 MB  | ####1      |  42% cudnn-7.6.5          | 250.6 MB  | ####2      |  42% cudnn-7.6.5          | 250.6 MB  | ####2      |  43% cudnn-7.6.5          | 250.6 MB  | ####3      |  43% cudnn-7.6.5          | 250.6 MB  | ####3      |  44% cudnn-7.6.5          | 250.6 MB  | ####4      |  45% cudnn-7.6.5          | 250.6 MB  | ####5      |  45% cudnn-7.6.5          | 250.6 MB  | ####6      |  46% cudnn-7.6.5          | 250.6 MB  | ####7      |  47% cudnn-7.6.5          | 250.6 MB  | ####7      |  48% cudnn-7.6.5          | 250.6 MB  | ####8      |  48% cudnn-7.6.5          | 250.6 MB  | ####9      |  49% cudnn-7.6.5          | 250.6 MB  | ####9      |  50% cudnn-7.6.5          | 250.6 MB  | #####      |  50% cudnn-7.6.5          | 250.6 MB  | #####      |  51% cudnn-7.6.5          | 250.6 MB  | #####1     |  51% cudnn-7.6.5          | 250.6 MB  | #####2     |  52% cudnn-7.6.5          | 250.6 MB  | #####2     |  53% cudnn-7.6.5          | 250.6 MB  | #####3     |  53% cudnn-7.6.5          | 250.6 MB  | #####3     |  54% cudnn-7.6.5          | 250.6 MB  | #####4     |  54% cudnn-7.6.5          | 250.6 MB  | #####5     |  55% cudnn-7.6.5          | 250.6 MB  | #####5     |  56% cudnn-7.6.5          | 250.6 MB  | #####6     |  56% cudnn-7.6.5          | 250.6 MB  | #####7     |  57% cudnn-7.6.5          | 250.6 MB  | #####7     |  58% cudnn-7.6.5          | 250.6 MB  | #####8     |  58% cudnn-7.6.5          | 250.6 MB  | #####8     |  59% cudnn-7.6.5          | 250.6 MB  | #####9     |  60% cudnn-7.6.5          | 250.6 MB  | ######     |  60% cudnn-7.6.5          | 250.6 MB  | ######     |  61% cudnn-7.6.5          | 250.6 MB  | ######1    |  62% cudnn-7.6.5          | 250.6 MB  | ######2    |  62% cudnn-7.6.5          | 250.6 MB  | ######2    |  63% cudnn-7.6.5          | 250.6 MB  | ######3    |  63% cudnn-7.6.5          | 250.6 MB  | ######4    |  64% cudnn-7.6.5          | 250.6 MB  | ######4    |  65% cudnn-7.6.5          | 250.6 MB  | ######5    |  65% cudnn-7.6.5          | 250.6 MB  | ######5    |  66% cudnn-7.6.5          | 250.6 MB  | ######6    |  67% cudnn-7.6.5          | 250.6 MB  | ######7    |  67% cudnn-7.6.5          | 250.6 MB  | ######7    |  68% cudnn-7.6.5          | 250.6 MB  | ######8    |  68% cudnn-7.6.5          | 250.6 MB  | ######8    |  69% cudnn-7.6.5          | 250.6 MB  | ######9    |  69% cudnn-7.6.5          | 250.6 MB  | #######    |  70% cudnn-7.6.5          | 250.6 MB  | #######    |  71% cudnn-7.6.5          | 250.6 MB  | #######1   |  71% cudnn-7.6.5          | 250.6 MB  | #######1   |  72% cudnn-7.6.5          | 250.6 MB  | #######2   |  73% cudnn-7.6.5          | 250.6 MB  | #######3   |  73% cudnn-7.6.5          | 250.6 MB  | #######3   |  74% cudnn-7.6.5          | 250.6 MB  | #######4   |  74% cudnn-7.6.5          | 250.6 MB  | #######4   |  75% cudnn-7.6.5          | 250.6 MB  | #######5   |  75% cudnn-7.6.5          | 250.6 MB  | #######6   |  76% cudnn-7.6.5          | 250.6 MB  | #######6   |  77% cudnn-7.6.5          | 250.6 MB  | #######7   |  77% cudnn-7.6.5          | 250.6 MB  | #######7   |  78% cudnn-7.6.5          | 250.6 MB  | #######8   |  78% cudnn-7.6.5          | 250.6 MB  | #######9   |  79% cudnn-7.6.5          | 250.6 MB  | #######9   |  80% cudnn-7.6.5          | 250.6 MB  | ########   |  80% cudnn-7.6.5          | 250.6 MB  | ########   |  81% cudnn-7.6.5          | 250.6 MB  | ########1  |  81% cudnn-7.6.5          | 250.6 MB  | ########2  |  83% cudnn-7.6.5          | 250.6 MB  | ########3  |  84% cudnn-7.6.5          | 250.6 MB  | ########5  |  86% cudnn-7.6.5          | 250.6 MB  | ########7  |  88% cudnn-7.6.5          | 250.6 MB  | #########  |  90% cudnn-7.6.5          | 250.6 MB  | #########2 |  92% cudnn-7.6.5          | 250.6 MB  | #########4 |  94% cudnn-7.6.5          | 250.6 MB  | #########6 |  96% cudnn-7.6.5          | 250.6 MB  | #########8 |  98% cudnn-7.6.5          | 250.6 MB  | ########## | 100% cudnn-7.6.5          | 250.6 MB  | ########## | 100% 
-certifi-2021.5.30    | 141 KB    |            |   0% certifi-2021.5.30    | 141 KB    | #########  |  91% certifi-2021.5.30    | 141 KB    | ########## | 100% 
-_libgcc_mutex-0.1    | 3 KB      |            |   0% _libgcc_mutex-0.1    | 3 KB      | ########## | 100% _libgcc_mutex-0.1    | 3 KB      | ########## | 100% 
-ca-certificates-2022 | 131 KB    |            |   0% ca-certificates-2022 | 131 KB    | ########## | 100% ca-certificates-2022 | 131 KB    | ########## | 100% 
-chardet-4.0.0        | 213 KB    |            |   0% chardet-4.0.0        | 213 KB    | ########## | 100% chardet-4.0.0        | 213 KB    | ########## | 100% 
-pyasn1-0.4.8         | 54 KB     |            |   0% pyasn1-0.4.8         | 54 KB     | ########## | 100% pyasn1-0.4.8         | 54 KB     | ########## | 100% 
-readline-8.1.2       | 423 KB    |            |   0% readline-8.1.2       | 423 KB    | ########## | 100% readline-8.1.2       | 423 KB    | ########## | 100% 
-cachetools-4.2.2     | 13 KB     |            |   0% cachetools-4.2.2     | 13 KB     | ########## | 100% cachetools-4.2.2     | 13 KB     | ########## | 100% 
-pyasn1-modules-0.2.8 | 67 KB     |            |   0% pyasn1-modules-0.2.8 | 67 KB     | ########## | 100% pyasn1-modules-0.2.8 | 67 KB     | ########## | 100% 
-pysocks-1.7.1        | 30 KB     |            |   0% pysocks-1.7.1        | 30 KB     | #####2     |  53% pysocks-1.7.1        | 30 KB     | ########## | 100% 
-google-auth-oauthlib | 19 KB     |            |   0% google-auth-oauthlib | 19 KB     | ########4  |  84% google-auth-oauthlib | 19 KB     | ########## | 100% 
-yarl-1.6.3           | 139 KB    |            |   0% yarl-1.6.3           | 139 KB    | #1         |  12% yarl-1.6.3           | 139 KB    | ########## | 100% yarl-1.6.3           | 139 KB    | ########## | 100% 
-idna_ssl-1.1.0       | 8 KB      |            |   0% idna_ssl-1.1.0       | 8 KB      | ########## | 100% idna_ssl-1.1.0       | 8 KB      | ########## | 100% 
-async-timeout-3.0.1  | 13 KB     |            |   0% async-timeout-3.0.1  | 13 KB     | ########## | 100% async-timeout-3.0.1  | 13 KB     | ########## | 100% 
-sqlite-3.39.2        | 1.5 MB    |            |   0% sqlite-3.39.2        | 1.5 MB    | ########## | 100% sqlite-3.39.2        | 1.5 MB    | ########## | 100% 
-dataclasses-0.8      | 22 KB     |            |   0% dataclasses-0.8      | 22 KB     | ########## | 100% dataclasses-0.8      | 22 KB     | ########## | 100% 
-six-1.16.0           | 19 KB     |            |   0% six-1.16.0           | 19 KB     | ########## | 100% six-1.16.0           | 19 KB     | ########## | 100% 
-tensorboard-plugin-w | 663 KB    |            |   0% tensorboard-plugin-w | 663 KB    | 2          |   2% tensorboard-plugin-w | 663 KB    | ########## | 100% tensorboard-plugin-w | 663 KB    | ########## | 100% 
-requests-oauthlib-1. | 22 KB     |            |   0% requests-oauthlib-1. | 22 KB     | ########## | 100% requests-oauthlib-1. | 22 KB     | ########## | 100% 
-libffi-3.3           | 54 KB     |            |   0% libffi-3.3           | 54 KB     | ########## | 100% libffi-3.3           | 54 KB     | ########## | 100% 
-tensorflow-gpu-2.2.0 | 2 KB      |            |   0% tensorflow-gpu-2.2.0 | 2 KB      | ########## | 100% tensorflow-gpu-2.2.0 | 2 KB      | ########## | 100% 
-typing_extensions-4. | 29 KB     |            |   0% typing_extensions-4. | 29 KB     | ########## | 100% typing_extensions-4. | 29 KB     | ########## | 100% 
-tensorboard-2.4.0    | 8.8 MB    |            |   0% tensorboard-2.4.0    | 8.8 MB    | #6         |  17% tensorboard-2.4.0    | 8.8 MB    | #####4     |  55% tensorboard-2.4.0    | 8.8 MB    | ########## | 100% tensorboard-2.4.0    | 8.8 MB    | ########## | 100% 
-aiohttp-3.7.4.post0  | 638 KB    |            |   0% aiohttp-3.7.4.post0  | 638 KB    | 2          |   3% aiohttp-3.7.4.post0  | 638 KB    | ########## | 100% aiohttp-3.7.4.post0  | 638 KB    | ########## | 100% 
-pyjwt-1.7.1          | 32 KB     |            |   0% pyjwt-1.7.1          | 32 KB     | ########## | 100% pyjwt-1.7.1          | 32 KB     | ########## | 100% 
-cupti-10.1.168       | 1.7 MB    |            |   0% cupti-10.1.168       | 1.7 MB    | #####      |  51% cupti-10.1.168       | 1.7 MB    | ########## | 100% cupti-10.1.168       | 1.7 MB    | ########## | 100% 
-xz-5.2.5             | 389 KB    |            |   0% xz-5.2.5             | 389 KB    | ########## | 100% xz-5.2.5             | 389 KB    | ########## | 100% 
-mkl-service-2.3.0    | 56 KB     |            |   0% mkl-service-2.3.0    | 56 KB     | #####7     |  58% mkl-service-2.3.0    | 56 KB     | ########## | 100% mkl-service-2.3.0    | 56 KB     | ########## | 100% 
-werkzeug-2.0.3       | 220 KB    |            |   0% werkzeug-2.0.3       | 220 KB    | ########## | 100% werkzeug-2.0.3       | 220 KB    | ########## | 100% 
-markdown-3.3.4       | 125 KB    |            |   0% markdown-3.3.4       | 125 KB    | ########## | 100% markdown-3.3.4       | 125 KB    | ########## | 100% 
-pyopenssl-22.0.0     | 49 KB     |            |   0% pyopenssl-22.0.0     | 49 KB     | ########## | 100% pyopenssl-22.0.0     | 49 KB     | ########## | 100% 
-libprotobuf-3.17.2   | 2.4 MB    |            |   0% libprotobuf-3.17.2   | 2.4 MB    | ###4       |  34% libprotobuf-3.17.2   | 2.4 MB    | ########## | 100% libprotobuf-3.17.2   | 2.4 MB    | ########## | 100% 
-zipp-3.6.0           | 16 KB     |            |   0% zipp-3.6.0           | 16 KB     | ########## | 100% zipp-3.6.0           | 16 KB     | ########## | 100% 
-charset-normalizer-2 | 33 KB     |            |   0% charset-normalizer-2 | 33 KB     | ####8      |  48% charset-normalizer-2 | 33 KB     | ########## | 100% charset-normalizer-2 | 33 KB     | ########## | 100% 
-grpcio-1.36.1        | 2.0 MB    |            |   0% grpcio-1.36.1        | 2.0 MB    |            |   1% grpcio-1.36.1        | 2.0 MB    | ##3        |  24% grpcio-1.36.1        | 2.0 MB    | ########## | 100% grpcio-1.36.1        | 2.0 MB    | ########## | 100% 
-rsa-4.7.2            | 28 KB     |            |   0% rsa-4.7.2            | 28 KB     | ########## | 100% rsa-4.7.2            | 28 KB     | ########## | 100% 
-attrs-21.4.0         | 49 KB     |            |   0% attrs-21.4.0         | 49 KB     | ########## | 100% attrs-21.4.0         | 49 KB     | ########## | 100% 
-brotlipy-0.7.0       | 349 KB    |            |   0% brotlipy-0.7.0       | 349 KB    | ########## | 100% brotlipy-0.7.0       | 349 KB    | ########## | 100% 
-gast-0.3.3           | 14 KB     |            |   0% gast-0.3.3           | 14 KB     | ########## | 100% gast-0.3.3           | 14 KB     | ########## | 100% 
-blinker-1.4          | 23 KB     |            |   0% blinker-1.4          | 23 KB     | #######    |  71% blinker-1.4          | 23 KB     | ########## | 100% blinker-1.4          | 23 KB     | ########## | 100% 
-tensorflow-base-2.2. | 421.7 MB  |            |   0% tensorflow-base-2.2. | 421.7 MB  |            |   0% tensorflow-base-2.2. | 421.7 MB  |            |   0% tensorflow-base-2.2. | 421.7 MB  |            |   0% tensorflow-base-2.2. | 421.7 MB  |            |   1% tensorflow-base-2.2. | 421.7 MB  |            |   1% tensorflow-base-2.2. | 421.7 MB  | 1          |   1% tensorflow-base-2.2. | 421.7 MB  | 1          |   1% tensorflow-base-2.2. | 421.7 MB  | 1          |   2% tensorflow-base-2.2. | 421.7 MB  | 1          |   2% tensorflow-base-2.2. | 421.7 MB  | 2          |   2% tensorflow-base-2.2. | 421.7 MB  | 2          |   2% tensorflow-base-2.2. | 421.7 MB  | 2          |   3% tensorflow-base-2.2. | 421.7 MB  | 3          |   3% tensorflow-base-2.2. | 421.7 MB  | 3          |   3% tensorflow-base-2.2. | 421.7 MB  | 3          |   4% tensorflow-base-2.2. | 421.7 MB  | 4          |   4% tensorflow-base-2.2. | 421.7 MB  | 4          |   4% tensorflow-base-2.2. | 421.7 MB  | 4          |   5% tensorflow-base-2.2. | 421.7 MB  | 5          |   5% tensorflow-base-2.2. | 421.7 MB  | 5          |   5% tensorflow-base-2.2. | 421.7 MB  | 5          |   6% tensorflow-base-2.2. | 421.7 MB  | 6          |   6% tensorflow-base-2.2. | 421.7 MB  | 6          |   6% tensorflow-base-2.2. | 421.7 MB  | 6          |   7% tensorflow-base-2.2. | 421.7 MB  | 6          |   7% tensorflow-base-2.2. | 421.7 MB  | 7          |   7% tensorflow-base-2.2. | 421.7 MB  | 7          |   8% tensorflow-base-2.2. | 421.7 MB  | 7          |   8% tensorflow-base-2.2. | 421.7 MB  | 8          |   8% tensorflow-base-2.2. | 421.7 MB  | 8          |   9% tensorflow-base-2.2. | 421.7 MB  | 8          |   9% tensorflow-base-2.2. | 421.7 MB  | 9          |   9% tensorflow-base-2.2. | 421.7 MB  | 9          |  10% tensorflow-base-2.2. | 421.7 MB  | 9          |  10% tensorflow-base-2.2. | 421.7 MB  | #          |  10% tensorflow-base-2.2. | 421.7 MB  | #          |  11% tensorflow-base-2.2. | 421.7 MB  | #          |  11% tensorflow-base-2.2. | 421.7 MB  | #1         |  11% tensorflow-base-2.2. | 421.7 MB  | #1         |  12% tensorflow-base-2.2. | 421.7 MB  | #1         |  12% tensorflow-base-2.2. | 421.7 MB  | #2         |  12% tensorflow-base-2.2. | 421.7 MB  | #2         |  12% tensorflow-base-2.2. | 421.7 MB  | #2         |  13% tensorflow-base-2.2. | 421.7 MB  | #3         |  13% tensorflow-base-2.2. | 421.7 MB  | #3         |  13% tensorflow-base-2.2. | 421.7 MB  | #3         |  14% tensorflow-base-2.2. | 421.7 MB  | #3         |  14% tensorflow-base-2.2. | 421.7 MB  | #4         |  14% tensorflow-base-2.2. | 421.7 MB  | #4         |  15% tensorflow-base-2.2. | 421.7 MB  | #4         |  15% tensorflow-base-2.2. | 421.7 MB  | #5         |  15% tensorflow-base-2.2. | 421.7 MB  | #5         |  15% tensorflow-base-2.2. | 421.7 MB  | #5         |  16% tensorflow-base-2.2. | 421.7 MB  | #6         |  16% tensorflow-base-2.2. | 421.7 MB  | #6         |  16% tensorflow-base-2.2. | 421.7 MB  | #6         |  17% tensorflow-base-2.2. | 421.7 MB  | #6         |  17% tensorflow-base-2.2. | 421.7 MB  | #7         |  17% tensorflow-base-2.2. | 421.7 MB  | #7         |  17% tensorflow-base-2.2. | 421.7 MB  | #7         |  18% tensorflow-base-2.2. | 421.7 MB  | #7         |  18% tensorflow-base-2.2. | 421.7 MB  | #8         |  18% tensorflow-base-2.2. | 421.7 MB  | #8         |  19% tensorflow-base-2.2. | 421.7 MB  | #8         |  19% tensorflow-base-2.2. | 421.7 MB  | #9         |  19% tensorflow-base-2.2. | 421.7 MB  | #9         |  19% tensorflow-base-2.2. | 421.7 MB  | #9         |  20% tensorflow-base-2.2. | 421.7 MB  | ##         |  20% tensorflow-base-2.2. | 421.7 MB  | ##         |  20% tensorflow-base-2.2. | 421.7 MB  | ##         |  21% tensorflow-base-2.2. | 421.7 MB  | ##1        |  21% tensorflow-base-2.2. | 421.7 MB  | ##1        |  21% tensorflow-base-2.2. | 421.7 MB  | ##1        |  22% tensorflow-base-2.2. | 421.7 MB  | ##1        |  22% tensorflow-base-2.2. | 421.7 MB  | ##2        |  22% tensorflow-base-2.2. | 421.7 MB  | ##2        |  22% tensorflow-base-2.2. | 421.7 MB  | ##2        |  23% tensorflow-base-2.2. | 421.7 MB  | ##3        |  23% tensorflow-base-2.2. | 421.7 MB  | ##3        |  23% tensorflow-base-2.2. | 421.7 MB  | ##3        |  24% tensorflow-base-2.2. | 421.7 MB  | ##4        |  24% tensorflow-base-2.2. | 421.7 MB  | ##4        |  24% tensorflow-base-2.2. | 421.7 MB  | ##4        |  25% tensorflow-base-2.2. | 421.7 MB  | ##4        |  25% tensorflow-base-2.2. | 421.7 MB  | ##5        |  25% tensorflow-base-2.2. | 421.7 MB  | ##5        |  26% tensorflow-base-2.2. | 421.7 MB  | ##5        |  26% tensorflow-base-2.2. | 421.7 MB  | ##6        |  26% tensorflow-base-2.2. | 421.7 MB  | ##6        |  26% tensorflow-base-2.2. | 421.7 MB  | ##6        |  27% tensorflow-base-2.2. | 421.7 MB  | ##7        |  27% tensorflow-base-2.2. | 421.7 MB  | ##7        |  27% tensorflow-base-2.2. | 421.7 MB  | ##7        |  28% tensorflow-base-2.2. | 421.7 MB  | ##7        |  28% tensorflow-base-2.2. | 421.7 MB  | ##8        |  28% tensorflow-base-2.2. | 421.7 MB  | ##8        |  28% tensorflow-base-2.2. | 421.7 MB  | ##8        |  29% tensorflow-base-2.2. | 421.7 MB  | ##9        |  29% tensorflow-base-2.2. | 421.7 MB  | ##9        |  29% tensorflow-base-2.2. | 421.7 MB  | ##9        |  30% tensorflow-base-2.2. | 421.7 MB  | ###        |  30% tensorflow-base-2.2. | 421.7 MB  | ###        |  30% tensorflow-base-2.2. | 421.7 MB  | ###        |  31% tensorflow-base-2.2. | 421.7 MB  | ###        |  31% tensorflow-base-2.2. | 421.7 MB  | ###1       |  31% tensorflow-base-2.2. | 421.7 MB  | ###1       |  32% tensorflow-base-2.2. | 421.7 MB  | ###1       |  32% tensorflow-base-2.2. | 421.7 MB  | ###2       |  32% tensorflow-base-2.2. | 421.7 MB  | ###2       |  32% tensorflow-base-2.2. | 421.7 MB  | ###2       |  33% tensorflow-base-2.2. | 421.7 MB  | ###3       |  33% tensorflow-base-2.2. | 421.7 MB  | ###3       |  33% tensorflow-base-2.2. | 421.7 MB  | ###3       |  34% tensorflow-base-2.2. | 421.7 MB  | ###3       |  34% tensorflow-base-2.2. | 421.7 MB  | ###4       |  34% tensorflow-base-2.2. | 421.7 MB  | ###4       |  35% tensorflow-base-2.2. | 421.7 MB  | ###4       |  35% tensorflow-base-2.2. | 421.7 MB  | ###5       |  35% tensorflow-base-2.2. | 421.7 MB  | ###5       |  36% tensorflow-base-2.2. | 421.7 MB  | ###5       |  36% tensorflow-base-2.2. | 421.7 MB  | ###6       |  36% tensorflow-base-2.2. | 421.7 MB  | ###6       |  36% tensorflow-base-2.2. | 421.7 MB  | ###6       |  37% tensorflow-base-2.2. | 421.7 MB  | ###6       |  37% tensorflow-base-2.2. | 421.7 MB  | ###7       |  37% tensorflow-base-2.2. | 421.7 MB  | ###7       |  38% tensorflow-base-2.2. | 421.7 MB  | ###7       |  38% tensorflow-base-2.2. | 421.7 MB  | ###8       |  38% tensorflow-base-2.2. | 421.7 MB  | ###8       |  38% tensorflow-base-2.2. | 421.7 MB  | ###8       |  39% tensorflow-base-2.2. | 421.7 MB  | ###8       |  39% tensorflow-base-2.2. | 421.7 MB  | ###9       |  39% tensorflow-base-2.2. | 421.7 MB  | ###9       |  40% tensorflow-base-2.2. | 421.7 MB  | ###9       |  40% tensorflow-base-2.2. | 421.7 MB  | ####       |  40% tensorflow-base-2.2. | 421.7 MB  | ####       |  40% tensorflow-base-2.2. | 421.7 MB  | ####       |  41% tensorflow-base-2.2. | 421.7 MB  | ####1      |  41% tensorflow-base-2.2. | 421.7 MB  | ####1      |  41% tensorflow-base-2.2. | 421.7 MB  | ####1      |  42% tensorflow-base-2.2. | 421.7 MB  | ####2      |  42% tensorflow-base-2.2. | 421.7 MB  | ####2      |  42% tensorflow-base-2.2. | 421.7 MB  | ####2      |  43% tensorflow-base-2.2. | 421.7 MB  | ####2      |  43% tensorflow-base-2.2. | 421.7 MB  | ####3      |  43% tensorflow-base-2.2. | 421.7 MB  | ####3      |  44% tensorflow-base-2.2. | 421.7 MB  | ####4      |  44% tensorflow-base-2.2. | 421.7 MB  | ####5      |  45% tensorflow-base-2.2. | 421.7 MB  | ####6      |  47% tensorflow-base-2.2. | 421.7 MB  | ####8      |  48% tensorflow-base-2.2. | 421.7 MB  | #####      |  50% tensorflow-base-2.2. | 421.7 MB  | #####1     |  52% tensorflow-base-2.2. | 421.7 MB  | #####3     |  53% tensorflow-base-2.2. | 421.7 MB  | #####4     |  55% tensorflow-base-2.2. | 421.7 MB  | #####6     |  56% tensorflow-base-2.2. | 421.7 MB  | #####7     |  57% tensorflow-base-2.2. | 421.7 MB  | #####8     |  59% tensorflow-base-2.2. | 421.7 MB  | ######     |  60% tensorflow-base-2.2. | 421.7 MB  | ######1    |  62% tensorflow-base-2.2. | 421.7 MB  | ######3    |  63% tensorflow-base-2.2. | 421.7 MB  | ######4    |  65% tensorflow-base-2.2. | 421.7 MB  | ######5    |  66% tensorflow-base-2.2. | 421.7 MB  | ######6    |  67% tensorflow-base-2.2. | 421.7 MB  | ######7    |  68% tensorflow-base-2.2. | 421.7 MB  | ######9    |  69% tensorflow-base-2.2. | 421.7 MB  | #######1   |  71% tensorflow-base-2.2. | 421.7 MB  | #######2   |  73% tensorflow-base-2.2. | 421.7 MB  | #######4   |  75% tensorflow-base-2.2. | 421.7 MB  | #######7   |  78% tensorflow-base-2.2. | 421.7 MB  | ########   |  80% tensorflow-base-2.2. | 421.7 MB  | ########2  |  82% tensorflow-base-2.2. | 421.7 MB  | ########4  |  85% tensorflow-base-2.2. | 421.7 MB  | ########6  |  87% tensorflow-base-2.2. | 421.7 MB  | ########8  |  89% tensorflow-base-2.2. | 421.7 MB  | #########  |  91% tensorflow-base-2.2. | 421.7 MB  | #########2 |  93% tensorflow-base-2.2. | 421.7 MB  | #########4 |  95% tensorflow-base-2.2. | 421.7 MB  | #########6 |  97% tensorflow-base-2.2. | 421.7 MB  | #########8 |  98% tensorflow-base-2.2. | 421.7 MB  | ########## | 100% 
-idna-3.3             | 55 KB     |            |   0% idna-3.3             | 55 KB     | ##9        |  29% idna-3.3             | 55 KB     | ########## | 100% idna-3.3             | 55 KB     | ########## | 100% 
-astor-0.8.1          | 45 KB     |            |   0% astor-0.8.1          | 45 KB     | ###5       |  35% astor-0.8.1          | 45 KB     | ########## | 100% astor-0.8.1          | 45 KB     | ########## | 100% 
-setuptools-58.0.4    | 979 KB    |            |   0% setuptools-58.0.4    | 979 KB    | ########## | 100% setuptools-58.0.4    | 979 KB    | ########## | 100% 
-mkl_random-1.1.0     | 369 KB    |            |   0% mkl_random-1.1.0     | 369 KB    | 4          |   4% mkl_random-1.1.0     | 369 KB    | ########## | 100% mkl_random-1.1.0     | 369 KB    | ########## | 100% 
-cffi-1.14.6          | 224 KB    |            |   0% cffi-1.14.6          | 224 KB    | ########## | 100% cffi-1.14.6          | 224 KB    | ########## | 100% 
-python-3.6.13        | 32.5 MB   |            |   0% python-3.6.13        | 32.5 MB   |            |   0% python-3.6.13        | 32.5 MB   | 3          |   3% python-3.6.13        | 32.5 MB   | 6          |   6% python-3.6.13        | 32.5 MB   | 9          |  10% python-3.6.13        | 32.5 MB   | #4         |  14% python-3.6.13        | 32.5 MB   | #8         |  18% python-3.6.13        | 32.5 MB   | ##2        |  23% python-3.6.13        | 32.5 MB   | ##7        |  27% python-3.6.13        | 32.5 MB   | ###2       |  33% python-3.6.13        | 32.5 MB   | ###6       |  37% python-3.6.13        | 32.5 MB   | ####       |  41% python-3.6.13        | 32.5 MB   | ####5      |  45% python-3.6.13        | 32.5 MB   | ####8      |  49% python-3.6.13        | 32.5 MB   | #####3     |  53% python-3.6.13        | 32.5 MB   | #####6     |  57% python-3.6.13        | 32.5 MB   | ######1    |  61% python-3.6.13        | 32.5 MB   | ######4    |  65% python-3.6.13        | 32.5 MB   | ######8    |  68% python-3.6.13        | 32.5 MB   | #######3   |  73% python-3.6.13        | 32.5 MB   | #######8   |  79% python-3.6.13        | 32.5 MB   | ########2  |  83% python-3.6.13        | 32.5 MB   | ########6  |  87% python-3.6.13        | 32.5 MB   | #########1 |  92% python-3.6.13        | 32.5 MB   | #########6 |  96% python-3.6.13        | 32.5 MB   | ########## | 100% 
-h5py-2.10.0          | 1.1 MB    |            |   0% h5py-2.10.0          | 1.1 MB    | 1          |   1% h5py-2.10.0          | 1.1 MB    | ########## | 100% h5py-2.10.0          | 1.1 MB    | ########## | 100% 
-intel-openmp-2022.0. | 8.5 MB    |            |   0% intel-openmp-2022.0. | 8.5 MB    | ###8       |  39% intel-openmp-2022.0. | 8.5 MB    | #########  |  91% intel-openmp-2022.0. | 8.5 MB    | ########## | 100% 
-cudatoolkit-10.1.243 | 513.2 MB  |            |   0% cudatoolkit-10.1.243 | 513.2 MB  |            |   0% cudatoolkit-10.1.243 | 513.2 MB  |            |   0% cudatoolkit-10.1.243 | 513.2 MB  |            |   0% cudatoolkit-10.1.243 | 513.2 MB  |            |   1% cudatoolkit-10.1.243 | 513.2 MB  | 1          |   1% cudatoolkit-10.1.243 | 513.2 MB  | 1          |   1% cudatoolkit-10.1.243 | 513.2 MB  | 1          |   1% cudatoolkit-10.1.243 | 513.2 MB  | 1          |   2% cudatoolkit-10.1.243 | 513.2 MB  | 1          |   2% cudatoolkit-10.1.243 | 513.2 MB  | 2          |   2% cudatoolkit-10.1.243 | 513.2 MB  | 2          |   3% cudatoolkit-10.1.243 | 513.2 MB  | 2          |   3% cudatoolkit-10.1.243 | 513.2 MB  | 3          |   3% cudatoolkit-10.1.243 | 513.2 MB  | 4          |   4% cudatoolkit-10.1.243 | 513.2 MB  | 4          |   5% cudatoolkit-10.1.243 | 513.2 MB  | 6          |   6% cudatoolkit-10.1.243 | 513.2 MB  | 6          |   7% cudatoolkit-10.1.243 | 513.2 MB  | 7          |   8% cudatoolkit-10.1.243 | 513.2 MB  | 8          |   9% cudatoolkit-10.1.243 | 513.2 MB  | 9          |  10% cudatoolkit-10.1.243 | 513.2 MB  | #          |  11% cudatoolkit-10.1.243 | 513.2 MB  | #1         |  11% cudatoolkit-10.1.243 | 513.2 MB  | #2         |  12% cudatoolkit-10.1.243 | 513.2 MB  | #3         |  13% cudatoolkit-10.1.243 | 513.2 MB  | #4         |  14% cudatoolkit-10.1.243 | 513.2 MB  | #5         |  15% cudatoolkit-10.1.243 | 513.2 MB  | #5         |  16% cudatoolkit-10.1.243 | 513.2 MB  | #6         |  17% cudatoolkit-10.1.243 | 513.2 MB  | #7         |  18% cudatoolkit-10.1.243 | 513.2 MB  | #8         |  19% cudatoolkit-10.1.243 | 513.2 MB  | #9         |  20% cudatoolkit-10.1.243 | 513.2 MB  | ##         |  20% cudatoolkit-10.1.243 | 513.2 MB  | ##1        |  21% cudatoolkit-10.1.243 | 513.2 MB  | ##2        |  22% cudatoolkit-10.1.243 | 513.2 MB  | ##3        |  23% cudatoolkit-10.1.243 | 513.2 MB  | ##3        |  24% cudatoolkit-10.1.243 | 513.2 MB  | ##4        |  25% cudatoolkit-10.1.243 | 513.2 MB  | ##5        |  25% cudatoolkit-10.1.243 | 513.2 MB  | ##5        |  26% cudatoolkit-10.1.243 | 513.2 MB  | ##6        |  27% cudatoolkit-10.1.243 | 513.2 MB  | ##7        |  27% cudatoolkit-10.1.243 | 513.2 MB  | ##7        |  28% cudatoolkit-10.1.243 | 513.2 MB  | ##8        |  29% cudatoolkit-10.1.243 | 513.2 MB  | ##9        |  30% cudatoolkit-10.1.243 | 513.2 MB  | ###        |  31% cudatoolkit-10.1.243 | 513.2 MB  | ###1       |  32% cudatoolkit-10.1.243 | 513.2 MB  | ###2       |  33% cudatoolkit-10.1.243 | 513.2 MB  | ###3       |  34% cudatoolkit-10.1.243 | 513.2 MB  | ###4       |  34% cudatoolkit-10.1.243 | 513.2 MB  | ###5       |  35% cudatoolkit-10.1.243 | 513.2 MB  | ###6       |  36% cudatoolkit-10.1.243 | 513.2 MB  | ###7       |  37% cudatoolkit-10.1.243 | 513.2 MB  | ###8       |  38% cudatoolkit-10.1.243 | 513.2 MB  | ###9       |  40% cudatoolkit-10.1.243 | 513.2 MB  | ####       |  41% cudatoolkit-10.1.243 | 513.2 MB  | ####1      |  42% cudatoolkit-10.1.243 | 513.2 MB  | ####2      |  43% cudatoolkit-10.1.243 | 513.2 MB  | ####3      |  44% cudatoolkit-10.1.243 | 513.2 MB  | ####4      |  44% cudatoolkit-10.1.243 | 513.2 MB  | ####5      |  45% cudatoolkit-10.1.243 | 513.2 MB  | ####6      |  47% cudatoolkit-10.1.243 | 513.2 MB  | ####7      |  48% cudatoolkit-10.1.243 | 513.2 MB  | ####8      |  49% cudatoolkit-10.1.243 | 513.2 MB  | ####9      |  50% cudatoolkit-10.1.243 | 513.2 MB  | #####1     |  51% cudatoolkit-10.1.243 | 513.2 MB  | #####2     |  53% cudatoolkit-10.1.243 | 513.2 MB  | #####4     |  54% cudatoolkit-10.1.243 | 513.2 MB  | #####5     |  56% cudatoolkit-10.1.243 | 513.2 MB  | #####7     |  57% cudatoolkit-10.1.243 | 513.2 MB  | #####8     |  59% cudatoolkit-10.1.243 | 513.2 MB  | #####9     |  60% cudatoolkit-10.1.243 | 513.2 MB  | ######1    |  61% cudatoolkit-10.1.243 | 513.2 MB  | ######2    |  63% cudatoolkit-10.1.243 | 513.2 MB  | ######3    |  64% cudatoolkit-10.1.243 | 513.2 MB  | ######5    |  65% cudatoolkit-10.1.243 | 513.2 MB  | ######6    |  67% cudatoolkit-10.1.243 | 513.2 MB  | ######8    |  68% cudatoolkit-10.1.243 | 513.2 MB  | ######9    |  69% cudatoolkit-10.1.243 | 513.2 MB  | #######    |  70% cudatoolkit-10.1.243 | 513.2 MB  | #######1   |  71% cudatoolkit-10.1.243 | 513.2 MB  | #######2   |  72% cudatoolkit-10.1.243 | 513.2 MB  | #######3   |  73% cudatoolkit-10.1.243 | 513.2 MB  | #######4   |  75% cudatoolkit-10.1.243 | 513.2 MB  | #######6   |  76% cudatoolkit-10.1.243 | 513.2 MB  | #######7   |  77% cudatoolkit-10.1.243 | 513.2 MB  | #######8   |  79% cudatoolkit-10.1.243 | 513.2 MB  | #######9   |  80% cudatoolkit-10.1.243 | 513.2 MB  | ########1  |  82% cudatoolkit-10.1.243 | 513.2 MB  | ########3  |  83% cudatoolkit-10.1.243 | 513.2 MB  | ########4  |  84% cudatoolkit-10.1.243 | 513.2 MB  | ########5  |  86% cudatoolkit-10.1.243 | 513.2 MB  | ########7  |  87% cudatoolkit-10.1.243 | 513.2 MB  | ########8  |  89% cudatoolkit-10.1.243 | 513.2 MB  | ########9  |  90% cudatoolkit-10.1.243 | 513.2 MB  | #########1 |  91% cudatoolkit-10.1.243 | 513.2 MB  | #########2 |  93% cudatoolkit-10.1.243 | 513.2 MB  | #########3 |  94% cudatoolkit-10.1.243 | 513.2 MB  | #########4 |  95% cudatoolkit-10.1.243 | 513.2 MB  | #########6 |  96% cudatoolkit-10.1.243 | 513.2 MB  | #########7 |  97% cudatoolkit-10.1.243 | 513.2 MB  | #########8 |  99% cudatoolkit-10.1.243 | 513.2 MB  | #########9 | 100% cudatoolkit-10.1.243 | 513.2 MB  | ########## | 100% 
-coverage-5.5         | 255 KB    |            |   0% coverage-5.5         | 255 KB    | 6          |   6% coverage-5.5         | 255 KB    | ########## | 100% coverage-5.5         | 255 KB    | ########## | 100% 
-google-pasta-0.2.0   | 43 KB     |            |   0% google-pasta-0.2.0   | 43 KB     | ########## | 100% google-pasta-0.2.0   | 43 KB     | ########## | 100% 
-oauthlib-3.1.0       | 88 KB     |            |   0% oauthlib-3.1.0       | 88 KB     | ########## | 100% oauthlib-3.1.0       | 88 KB     | ########## | 100% 
-zlib-1.2.12          | 130 KB    |            |   0% zlib-1.2.12          | 130 KB    | ########## | 100% zlib-1.2.12          | 130 KB    | ########## | 100% 
-numpy-base-1.19.2    | 5.2 MB    |            |   0% numpy-base-1.19.2    | 5.2 MB    | ##9        |  30% numpy-base-1.19.2    | 5.2 MB    | ########## | 100% numpy-base-1.19.2    | 5.2 MB    | ########## | 100% 
-importlib-metadata-4 | 38 KB     |            |   0% importlib-metadata-4 | 38 KB     | ########## | 100% importlib-metadata-4 | 38 KB     | ########## | 100% 
-click-8.0.3          | 73 KB     |            |   0% click-8.0.3          | 73 KB     | ##2        |  22% click-8.0.3          | 73 KB     | ########## | 100% click-8.0.3          | 73 KB     | ########## | 100% 
-wrapt-1.12.1         | 49 KB     |            |   0% wrapt-1.12.1         | 49 KB     | ########## | 100% wrapt-1.12.1         | 49 KB     | ########## | 100% 
-protobuf-3.17.2      | 354 KB    |            |   0% protobuf-3.17.2      | 354 KB    | ########## | 100% protobuf-3.17.2      | 354 KB    | ########## | 100% 
-typing-extensions-4. | 8 KB      |            |   0% typing-extensions-4. | 8 KB      | ########## | 100% typing-extensions-4. | 8 KB      | ########## | 100% 
-libgfortran4-7.5.0   | 1.3 MB    |            |   0% libgfortran4-7.5.0   | 1.3 MB    | ########## | 100% libgfortran4-7.5.0   | 1.3 MB    | ########## | 100% 
-_openmp_mutex-5.1    | 20 KB     |            |   0% _openmp_mutex-5.1    | 20 KB     | ########## | 100% _openmp_mutex-5.1    | 20 KB     | ########## | 100% 
-libgomp-11.2.0       | 560 KB    |            |   0% libgomp-11.2.0       | 560 KB    | ########## | 100% libgomp-11.2.0       | 560 KB    | ########## | 100% 
-Preparing transaction: ...working... done
-Verifying transaction: ...working... done
-Executing transaction: ...working... done
-#
-# To activate this environment, use
-#
-#     $ conda activate tf_env3
-#
-# To deactivate an active environment, use
-#
-#     $ conda deactivate
-

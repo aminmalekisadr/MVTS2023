@@ -5,7 +5,7 @@ description: Parameters used to train a Genetic Algiorithm
 # IMPORTANT - avoid changing these data_parameters (other than the file paths), unless you really know what you are doing
 data_parameters:
   input_file: 'data/train'
-  label_file: './mvts-ano-eval/data/raw/ServerMachineDataset/test_label'
+  label_file: 'C:\Users\mmalekis\Desktop\MVTS2023\data\ServerMachineDataset\test_label'
   data_url: 'https://github.com/NetManAIOps/OmniAnomaly/tree/master/ServerMachineDataset'
   label_url: 'https://github.com/NetManAIOps/OmniAnomaly/tree/master/ServerMachineDataset'
   look_back: 200  # Num of time spaces to look back for training and testing RNN model (e.g. look_back = 50 means that the RNN will look at the previous 50 time steps)

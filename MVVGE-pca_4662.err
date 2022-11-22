@@ -1,57 +1,0 @@
-2022-10-29 21:52:45.960547: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /opt/uw/slurm/22.05.2/lib:/opt/uw/slurm/22.05.2/lib/slurm:/usr/local/lib:/opt/uw/openmpi/4.1.4/lib:/opt/uw/openmpi/4.1.4/lib/pmix:/opt/uw/openmpi/4.1.4/lib/openmpi:/opt/uw/slurm/22.05.2/lib/slurm:/opt/uw/slurm/22.05.2/lib
-2022-10-29 21:52:46.018225: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
-2022-10-29 21:52:56.343950: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /opt/uw/slurm/22.05.2/lib:/opt/uw/slurm/22.05.2/lib/slurm:/usr/local/lib:/opt/uw/openmpi/4.1.4/lib:/opt/uw/openmpi/4.1.4/lib/pmix:/opt/uw/openmpi/4.1.4/lib/openmpi:/opt/uw/slurm/22.05.2/lib/slurm:/opt/uw/slurm/22.05.2/lib
-2022-10-29 21:52:56.344229: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-10-29 21:52:56.344268: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (mosaic-21): /proc/driver/nvidia/version does not exist
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [09:35<19:11, 575.64s/it] 67%|██████▋   | 2/3 [19:12<09:36, 576.39s/it]100%|██████████| 3/3 [28:47<00:00, 575.95s/it]100%|██████████| 3/3 [28:47<00:00, 576.00s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [08:09<16:18, 489.23s/it] 67%|██████▋   | 2/3 [16:14<08:06, 486.95s/it]100%|██████████| 3/3 [24:19<00:00, 485.99s/it]100%|██████████| 3/3 [24:19<00:00, 486.48s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [08:28<16:56, 508.28s/it] 67%|██████▋   | 2/3 [16:45<08:21, 501.95s/it]100%|██████████| 3/3 [25:00<00:00, 498.48s/it]100%|██████████| 3/3 [25:00<00:00, 500.05s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [09:12<18:24, 552.36s/it] 67%|██████▋   | 2/3 [18:16<09:07, 547.68s/it]100%|██████████| 3/3 [27:40<00:00, 554.94s/it]100%|██████████| 3/3 [27:40<00:00, 553.45s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [12:46<25:33, 766.94s/it] 67%|██████▋   | 2/3 [25:28<12:44, 764.05s/it]100%|██████████| 3/3 [38:23<00:00, 768.96s/it]100%|██████████| 3/3 [38:23<00:00, 767.93s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [08:56<17:53, 536.71s/it] 67%|██████▋   | 2/3 [17:50<08:55, 535.02s/it]100%|██████████| 3/3 [26:44<00:00, 534.73s/it]100%|██████████| 3/3 [26:44<00:00, 534.98s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [07:26<14:52, 446.14s/it] 67%|██████▋   | 2/3 [14:48<07:23, 443.74s/it]100%|██████████| 3/3 [22:10<00:00, 443.28s/it]100%|██████████| 3/3 [22:10<00:00, 443.65s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [07:42<15:25, 462.93s/it] 67%|██████▋   | 2/3 [15:22<07:41, 461.01s/it]100%|██████████| 3/3 [23:02<00:00, 460.43s/it]100%|██████████| 3/3 [23:02<00:00, 460.78s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [08:22<16:44, 502.01s/it] 67%|██████▋   | 2/3 [16:44<08:22, 502.13s/it]100%|██████████| 3/3 [25:05<00:00, 501.59s/it]100%|██████████| 3/3 [25:05<00:00, 501.72s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [11:34<23:08, 694.29s/it] 67%|██████▋   | 2/3 [23:24<11:43, 703.64s/it]100%|██████████| 3/3 [35:27<00:00, 712.41s/it]100%|██████████| 3/3 [35:27<00:00, 709.11s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [11:12<22:25, 672.87s/it] 67%|██████▋   | 2/3 [22:26<11:13, 673.28s/it]100%|██████████| 3/3 [33:42<00:00, 674.49s/it]100%|██████████| 3/3 [33:42<00:00, 674.12s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [09:20<18:41, 560.59s/it] 67%|██████▋   | 2/3 [18:41<09:20, 560.93s/it]100%|██████████| 3/3 [27:58<00:00, 559.20s/it]100%|██████████| 3/3 [27:58<00:00, 559.63s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [09:46<19:33, 586.64s/it] 67%|██████▋   | 2/3 [19:35<09:47, 587.86s/it]100%|██████████| 3/3 [29:14<00:00, 583.93s/it]100%|██████████| 3/3 [29:14<00:00, 584.87s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [10:45<21:31, 645.83s/it] 67%|██████▋   | 2/3 [21:26<10:42, 642.53s/it]100%|██████████| 3/3 [32:08<00:00, 642.68s/it]100%|██████████| 3/3 [32:08<00:00, 642.97s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [15:03<30:07, 903.69s/it] 67%|██████▋   | 2/3 [29:57<14:58, 898.01s/it]100%|██████████| 3/3 [44:53<00:00, 896.82s/it]100%|██████████| 3/3 [44:53<00:00, 897.71s/it]
-WARNING:absl:Found untraced functions such as lstm_cell_layer_call_fn, lstm_cell_layer_call_and_return_conditional_losses while saving (showing 2 of 2). These functions will not be directly callable after loading.
-WARNING:absl:Found untraced functions such as lstm_cell_1_layer_call_fn, lstm_cell_1_layer_call_and_return_conditional_losses, lstm_cell_2_layer_call_fn, lstm_cell_2_layer_call_and_return_conditional_losses, gru_cell_layer_call_fn while saving (showing 5 of 6). These functions will not be directly callable after loading.
-WARNING:absl:Found untraced functions such as gru_cell_1_layer_call_fn, gru_cell_1_layer_call_and_return_conditional_losses, lstm_cell_3_layer_call_fn, lstm_cell_3_layer_call_and_return_conditional_losses, lstm_cell_4_layer_call_fn while saving (showing 5 of 8). These functions will not be directly callable after loading.
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [09:38<19:17, 578.93s/it] 67%|██████▋   | 2/3 [19:14<09:37, 577.01s/it]100%|██████████| 3/3 [28:46<00:00, 574.64s/it]100%|██████████| 3/3 [28:46<00:00, 575.47s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [07:59<15:58, 479.08s/it] 67%|██████▋   | 2/3 [16:00<08:00, 480.19s/it]100%|██████████| 3/3 [24:00<00:00, 480.26s/it]100%|██████████| 3/3 [24:00<00:00, 480.13s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [08:17<16:35, 497.62s/it] 67%|██████▋   | 2/3 [16:38<08:19, 499.44s/it]100%|██████████| 3/3 [25:02<00:00, 501.73s/it]100%|██████████| 3/3 [25:02<00:00, 500.93s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [09:08<18:16, 548.40s/it] 67%|██████▋   | 2/3 [18:14<09:06, 546.94s/it]100%|██████████| 3/3 [27:27<00:00, 549.57s/it]100%|██████████| 3/3 [27:27<00:00, 549.01s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [12:48<25:36, 768.19s/it] 67%|██████▋   | 2/3 [25:41<12:51, 771.04s/it]100%|██████████| 3/3 [38:12<00:00, 762.00s/it]100%|██████████| 3/3 [38:12<00:00, 764.16s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [08:49<17:39, 529.64s/it] 67%|██████▋   | 2/3 [17:31<08:44, 524.89s/it]100%|██████████| 3/3 [26:21<00:00, 527.35s/it]100%|██████████| 3/3 [26:21<00:00, 527.16s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [07:22<14:44, 442.21s/it] 67%|██████▋   | 2/3 [14:43<07:21, 441.48s/it]100%|██████████| 3/3 [22:06<00:00, 442.21s/it]100%|██████████| 3/3 [22:06<00:00, 442.09s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [07:39<15:19, 459.99s/it] 67%|██████▋   | 2/3 [15:16<07:37, 457.98s/it]100%|██████████| 3/3 [23:02<00:00, 461.63s/it]100%|██████████| 3/3 [23:02<00:00, 460.84s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [08:22<16:44, 502.16s/it] 67%|██████▋   | 2/3 [16:41<08:20, 500.57s/it]100%|██████████| 3/3 [25:04<00:00, 501.67s/it]100%|██████████| 3/3 [25:04<00:00, 501.53s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [11:54<23:49, 714.63s/it] 67%|██████▋   | 2/3 [23:39<11:48, 708.81s/it]100%|██████████| 3/3 [35:20<00:00, 705.11s/it]100%|██████████| 3/3 [35:20<00:00, 706.69s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [11:02<22:05, 662.84s/it] 67%|██████▋   | 2/3 [22:07<11:04, 664.17s/it]100%|██████████| 3/3 [33:14<00:00, 665.04s/it]100%|██████████| 3/3 [33:14<00:00, 664.68s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [09:21<18:43, 561.79s/it] 67%|██████▋   | 2/3 [18:41<09:20, 560.39s/it]100%|██████████| 3/3 [28:01<00:00, 560.53s/it]100%|██████████| 3/3 [28:01<00:00, 560.63s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [09:44<19:28, 584.08s/it] 67%|██████▋   | 2/3 [19:17<09:37, 577.70s/it]100%|██████████| 3/3 [28:59<00:00, 579.66s/it]100%|██████████| 3/3 [28:59<00:00, 579.77s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [10:34<21:09, 634.59s/it] 67%|██████▋   | 2/3 [21:14<10:37, 637.75s/it]100%|██████████| 3/3 [31:48<00:00, 636.22s/it]100%|██████████| 3/3 [31:48<00:00, 636.32s/it]
-  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [15:18<30:36, 918.13s/it] 67%|██████▋   | 2/3 [30:33<15:16, 916.28s/it]100%|██████████| 3/3 [45:24<00:00, 905.08s/it]100%|██████████| 3/3 [45:24<00:00, 908.29s/it]
-WARNING:absl:Found untraced functions such as lstm_cell_layer_call_fn, lstm_cell_layer_call_and_return_conditional_losses while saving (showing 2 of 2). These functions will not be directly callable after loading.
-WARNING:absl:Found untraced functions such as lstm_cell_1_layer_call_fn, lstm_cell_1_layer_call_and_return_conditional_losses, lstm_cell_2_layer_call_fn, lstm_cell_2_layer_call_and_return_conditional_losses, gru_cell_layer_call_fn while saving (showing 5 of 6). These functions will not be directly callable after loading.
-WARNING:absl:Found untraced functions such as gru_cell_1_layer_call_fn, gru_cell_1_layer_call_and_return_conditional_losses, lstm_cell_3_layer_call_fn, lstm_cell_3_layer_call_and_return_conditional_losses, lstm_cell_4_layer_call_fn while saving (showing 5 of 8). These functions will not be directly callable after loading.
-Traceback (most recent call last):
-  File "main.py", line 370, in <module>
-    main()
-  File "main.py", line 246, in main
-    dict_ensemble = evaluate_ga('/csv/' + name[:-4] + '.csv', labels, train_data, test_data, sys.argv[3])
-  File "/mnt/campus/math/cluster/research/slurm-pr1/work_root/mmalekis/MVVGE/src/ga/evaluate_ga.py", line 780, in evaluate_ga
-    dict_ensemble = ensemble_stacking(label_data, best_rnn_model, best_lr_model, best_rf_model, best_test_predict_rnn,
-  File "/mnt/campus/math/cluster/research/slurm-pr1/work_root/mmalekis/MVVGE/src/ensemble/ensemble.py", line 90, in ensemble_stacking
-    for i in range(model_1_values.shape[0]):
-  File "/mnt/campus/math/cluster/research/slurm-pr1/work_root/mmalekis/MVVGE/src/ensemble/ensemble.py", line 90, in ensemble_stacking
-    for i in range(model_1_values.shape[0]):
-  File "/work/mmalekis/.conda/envs/gennn/lib/python3.8/bdb.py", line 88, in trace_dispatch
-    return self.dispatch_line(frame)
-  File "/work/mmalekis/.conda/envs/gennn/lib/python3.8/bdb.py", line 113, in dispatch_line
-    if self.quitting: raise BdbQuit
-bdb.BdbQuit
