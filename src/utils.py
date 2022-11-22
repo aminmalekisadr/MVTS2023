@@ -10,8 +10,8 @@ from tensorflow.keras.utils import plot_model
 
 from src.model.model import *
 
-my_devices = tensorflow.config.experimental.list_physical_devices(device_type='GPU')
-tensorflow.config.experimental.set_visible_devices(devices=my_devices, device_type='GPU')
+#my_devices = tensorflow.config.experimental.list_physical_devices(device_type='GPU')
+#tensorflow.config.experimental.set_visible_devices(devices=my_devices, device_type='GPU')
 # To find out which devices your operations and tensors are assigned to
 # tensorflow.debugging.set_log_device_placement(True)
 # from src.evaluation.evaluation import *
@@ -434,11 +434,11 @@ def Gauss_s(train_score, test_score, train, test, mean_Error_train, mean_error_v
     f1 = Fitter(train_score, distributions=['norm'])
     f1.fit()
     f1.summary()
-    print(f1.fitted_param['norm'])
+    #print(f1.fitted_param['norm'])
     f2 = Fitter(test_score, distributions=['norm'])
     f2.fit()
     f2.summary()
-    print(f2.fitted_param['norm'])
+    #print(f2.fitted_param['norm'])
 
     params_train_score = f1.fitted_param['norm']
     params_test_score = f2.fitted_param['norm']
@@ -446,10 +446,10 @@ def Gauss_s(train_score, test_score, train, test, mean_Error_train, mean_error_v
     distribution_train = norm(float(params_train_score[0]), float(params_train_score[1]))
     distribution_test = norm(float(params_test_score[0]), float(params_test_score[1]))
 
-    probas_train = distribution_train.logsf(train_score)
-    probs1_train = distribution_train.cdf(train_score)
-    probs1_test = distribution_test.cdf(test_score)
-    probas_test = distribution_test.logsf(test_score)
+    #probas_train = distribution_train.logsf(train_score)
+    #probs1_train = distribution_train.cdf(train_score)
+    #probs1_test = distribution_test.cdf(test_score)
+    #probas_test = distribution_test.logsf(test_score)
 
     train_prob_score = -1 * get_per_channel_probas(train_score.reshape(-1, 1), params_train_score,
                                                    logcdf=logcdf)

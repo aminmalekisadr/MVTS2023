@@ -1,9 +1,10 @@
 import gc  # garbage collector
+import pdb
 
 import numpy as np
 import pandas as pd
 # import forestci as fci
-import tensorflow
+import tensorflow as tf
 from keras.models import Model
 from scipy import linalg
 from sklearn.decomposition import IncrementalPCA
@@ -19,10 +20,11 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.utils.extmath import svd_flip, stable_cumsum
 
 from src.utils import _infer_dimension
-from src.utils import autoencodermodel
-
-my_devices = tensorflow.config.experimental.list_physical_devices(device_type='GPU')
-tensorflow.config.experimental.set_visible_devices(devices=my_devices, device_type='GPU')
+from src.model.model import autoencodermodel
+from src.model.model import lstm_autoencoder
+from src.model.model import LSTM_Var_Autoencoder
+#my_devices = tensorflow.config.experimental.list_physical_devices(device_type='GPU')
+#tensorflow.config.experimental.set_visible_devices(devices=my_devices, device_type='GPU')
 # To find out which devices your operations and tensors are assigned to
 #
 import yaml
@@ -236,7 +238,7 @@ class Preprocess:
 
         # self.train = pca_train.transform(train)
 
-        svd_test = TruncatedSVD(n_components=test_n_components)
+        svd_test = TruncatedSVD(n_components=train_n_components)
         svd_test.fit(test)
         self.test = svd_test.transform(test)
         scaler, train_x_stf, train_x_st, train_y, train_x_rf_stf, train_x_rf, train_y_rf, train_x_rf_st, train_x_lr_st, train_x_lr, train_y_lr = self.load_dataset(
@@ -258,7 +260,7 @@ class Preprocess:
 
         self.train = manifold_train.transform(train)
 
-        manifold_test = LocallyLinearEmbedding(n_components=test_n_components)
+        manifold_test = LocallyLinearEmbedding(n_components=train_n_components)
         manifold_test.fit(test)
         self.test = manifold_test.transform(test)
         scaler, train_x_stf, train_x_st, train_y, train_x_rf_stf, train_x_rf, train_y_rf, train_x_rf_st, train_x_lr_st, train_x_lr, train_y_lr = self.load_dataset(
@@ -282,7 +284,7 @@ class Preprocess:
 
         self.train = Isomap_train.transform(train)
 
-        Isomap_test = Isomap(n_components=test_n_components)
+        Isomap_test = Isomap(n_components=train_n_components)
         Isomap_test.fit(test)
         self.test = Isomap_test.transform(test)
         scaler, train_x_stf, train_x_st, train_y, train_x_rf_stf, train_x_rf, train_y_rf, train_x_rf_st, train_x_lr_st, train_x_lr, train_y_lr = self.load_dataset(
@@ -331,7 +333,7 @@ class Preprocess:
 
         self.train = spectral_train.fit_transform(train)
 
-        spectral_test = SpectralEmbedding(n_components=test_n_components)
+        spectral_test = SpectralEmbedding(n_components=train_n_components)
         spectral_test.fit(test)
         self.test = spectral_test.fit_transform(test)
         scaler, train_x_stf, train_x_st, train_y, train_x_rf_stf, train_x_rf, train_y_rf, train_x_rf_st, train_x_lr_st, train_x_lr, train_y_lr = self.load_dataset(
@@ -416,6 +418,73 @@ class Preprocess:
         test_x, test_y = self.create_dataset(self.test, self.experiment_config['data_parameters']['look_back'])
 
         return scaler, train_x_stf, train_x_st, train_y, test_x_stf, test_x_st, test_y, train_x_rf_stf, train_x_rf, train_y_rf, test_x_rf_stf, test_x_rf, test_y_rf, train_x_rf_st, test_x_rf_st, train_x_lr_st, train_x_lr, train_y_lr, test_x_lr_st, test_x_lr, test_y_lr, test_explained_variance_, test_explained_variance_ratio_, test_explained_variance_, test_explained_variance_ratio_
+    def lstm_auto_encoder(self, train, test, data_path, n_components=0.95, show_plots=False):
+
+       scaler, train_x_stf, train_x_st, train_y, train_x_rf_stf, train_x_rf, train_y_rf, train_x_rf_st, train_x_lr_st, train_x_lr, train_y_lr = self.load_dataset(
+                train)
+       scaler, test_x_stf, test_x_st, test_y, test_x_rf_stf, test_x_rf, test_y_rf, test_x_rf_st, test_x_lr_st, test_x_lr, test_y_lr = self.load_dataset(
+                test)
+       train_x = np.reshape(train_x_stf, (train_x_stf.shape[0], train_x_stf.shape[1], train_x_stf.shape[2]))
+       #train_y = np.reshape(train_y, (train_y.shape[0], train_y.shape[2]))
+       test_x = np.reshape(test_x_stf, (test_x_stf.shape[0], test_x_stf.shape[1], test_x_stf.shape[2]))
+       #test_y = np.reshape(test_y, (test_y.shape[0], test_y.shape[2]))
+
+       model=lstm_autoencoder(train_x_st.shape[1])
+
+       model.fit(train_x,train_y, epochs=50, batch_size=256, validation_split=0.05, verbose=2)
+       encoder1 = Model(model.input, model.get_layer('lstm2').output)
+       self.train = encoder1.predict(train)
+       self.test = encoder1.predict(test)
+       train_explained_variance_, train_explained_variance_ratio_, _ = self.explain_var(self.train, n_components=5)
+       test_explained_variance_, test_explained_variance_ratio_, _ = self.explain_var(self.test, n_components=5)
+       scaler, train_x_stf, train_x_st, train_y, train_x_rf_stf, train_x_rf, train_y_rf, train_x_rf_st, train_x_lr_st, train_x_lr, train_y_lr = self.load_dataset(
+                self.train)
+       scaler, test_x_stf, test_x_st, test_y, test_x_rf_stf, test_x_rf, test_y_rf, test_x_rf_st, test_x_lr_st, test_x_lr, test_y_lr = self.load_dataset(
+                self.test)
+       train_x, train_y = self.create_dataset(self.train, self.experiment_config['data_parameters']['look_back'])
+       test_x, test_y = self.create_dataset(self.test, self.experiment_config['data_parameters']['look_back'])
+       return scaler, train_x_stf, train_x_st, train_y, test_x_stf, test_x_st, test_y, train_x_rf_stf, train_x_rf, train_y_rf, test_x_rf_stf, test_x_rf, test_y_rf, train_x_rf_st, test_x_rf_st, train_x_lr_st, train_x_lr, train_y_lr, test_x_lr_st, test_x_lr, test_y_lr,test_explained_variance_, test_explained_variance_ratio_,
+    def variational_lstm_autoencoder(self,train, test, data_path, n_components=0.95, show_plots=False):
+        scaler, train_x_stf, train_x_st, train_y, train_x_rf_stf, train_x_rf, train_y_rf, train_x_rf_st, train_x_lr_st, train_x_lr, train_y_lr = self.load_dataset(
+            train)
+        scaler, test_x_stf, test_x_st, test_y, test_x_rf_stf, test_x_rf, test_y_rf, test_x_rf_st, test_x_lr_st, test_x_lr, test_y_lr = self.load_dataset(
+            test)
+        train_x = np.reshape(train_x_stf, (train_x_stf.shape[0], train_x_stf.shape[1], train_x_stf.shape[2]))
+        # train_y = np.reshape(train_y, (train_y.shape[0], train_y.shape[2]))
+        test_x = np.reshape(test_x_stf, (test_x_stf.shape[0], test_x_stf.shape[1], test_x_stf.shape[2]))
+        # test_y = np.reshape(test_y, (test_y.shape[0], test_y.shape[2]))
+        vae = LSTM_Var_Autoencoder(intermediate_dim=15, z_dim=5, n_dim=38, stateful=True)  # default stateful = False
+        #train_x = tf.reshape(train_x, (train_x[0], 64, 64, 3))
+
+        vae.fit(train_x, learning_rate=0.01, batch_size=256, num_epochs=20, REG_LAMBDA=0.01,
+                 verbose=2)
+
+        """REG_LAMBDA is the L2 loss lambda coefficient, should be set to 0 if not desired.
+           optimizer_param : pass a dict = {}
+        """
+
+        x_reconstructed, recons_error = vae.reconstruct(test_x, get_error=True)  # returns squared error
+
+        x_reduced_train = vae.reduce(test_x)  # latent space representation
+        self.train = x_reduced_train
+        self.test = x_reduced_train
+        train_explained_variance_, train_explained_variance_ratio_, _ = self.explain_var(self.train, n_components=5)
+        test_explained_variance_, test_explained_variance_ratio_, _ = self.explain_var(self.test, n_components=5)
+        scaler, train_x_stf, train_x_st, train_y, train_x_rf_stf, train_x_rf, train_y_rf, train_x_rf_st, train_x_lr_st, train_x_lr, train_y_lr = self.load_dataset(
+            self.train)
+        scaler, test_x_stf, test_x_st, test_y, test_x_rf_stf, test_x_rf, test_y_rf, test_x_rf_st, test_x_lr_st, test_x_lr, test_y_lr = self.load_dataset(
+            self.test)
+        train_x, train_y = self.create_dataset(self.train, self.experiment_config['data_parameters']['look_back'])
+        test_x, test_y = self.create_dataset(self.test, self.experiment_config['data_parameters']['look_back'])
+        return scaler, train_x_stf, train_x_st, train_y, test_x_stf, test_x_st, test_y, train_x_rf_stf, train_x_rf, train_y_rf, test_x_rf_stf, test_x_rf, test_y_rf, train_x_rf_st, test_x_rf_st, train_x_lr_st, train_x_lr, train_y_lr, test_x_lr_st, test_x_lr, test_y_lr,test_explained_variance_, test_explained_variance_ratio_
+
+
+
+
+
+
+
+
 
     def auto_encoder(self, train, test, data_path=None, show_plots=False):
 

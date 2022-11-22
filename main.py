@@ -6,9 +6,8 @@ import zipfile
 from statistics import mean
 
 # Reading Data
-import isort
 
-isort.file("main.py")
+
 # import src.utils
 import logging
 import pickle
@@ -67,6 +66,7 @@ def main():
     #   MSL = [x for x in MSL if x not in files]
     #  SMAP = [x for x in SMAP if x not in files]
     SMD = [x for x in path1 if x not in files]
+    SMD=sorted(SMD)
 
     # SMAP=list(SMAP-files)
     namee = sys.argv[2]

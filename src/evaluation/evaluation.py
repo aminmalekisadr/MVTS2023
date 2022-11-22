@@ -12,9 +12,9 @@ from sklearn.metrics import mean_squared_error
 from src.utils import Gauss_s
 from src.utils import eig_method
 from src.utils import score
-
-my_devices = tensorflow.config.experimental.list_physical_devices(device_type='GPU')
-tensorflow.config.experimental.set_visible_devices(devices=my_devices, device_type='GPU')
+import pdb
+#my_devices = tensorflow.config.experimental.list_physical_devices(device_type='GPU')
+#tensorflow.config.experimental.set_visible_devices(devices=my_devices, device_type='GPU')
 # To find out which devices your operations and tensors are assigned to
 # tensorflow.debugging.set_log_device_placement(True)
 from mlinsights.mlmodel import IntervalRegressor
@@ -606,10 +606,6 @@ def evaluate_rf(model, train_x, test_x, train_y, test_y, scaler, label_data, pca
             # model1 = RandomForestRegressor(n_estimators=model.n_estimators, min_samples_leaf=4, max_depth=None)
             model.fit(train_x1[idx[:train_x1.shape[0]]], train_y1[idx[:train_y1.shape[0]]])
 
-            # idx = list(range(test_x.shape[0]))
-            # shuffle the data
-            # np.random.shuffle(idx)
-            # pdb.set_trace()
 
             err_down, err_up = pred_ints(model, test_x1)
 
@@ -627,23 +623,10 @@ def evaluate_rf(model, train_x, test_x, train_y, test_y, scaler, label_data, pca
             # pdb.set_trace()
             truth_uncertainty_df['value'] = test_y1[:, 0]
             truth_uncertainty_df['index'] = truth_uncertainty_df.index
-            # pdb.set_trace()
-            # test_predict = scaler.inverse_transform(test_predict)
 
-            #  test_y = scaler.inverse_transform([test_y])
-            # Calculate RMSE for train and test
-            #    train_score = mean_squared_error(train_y[:, 0], train_predict[:, 0])
             train_scores = np.sqrt((train_y1.squeeze() - train_predict1.squeeze()) ** 2)
             test_scores = np.sqrt((test_y1.squeeze() - test_predict1.squeeze()) ** 2)
-            #     test_score = mean_squared_error(test_y[:, 0], test_predict[:, 0])
-            # pdb.set_trace()
 
-            # train_score_MC = mean_squared_error(train_y[0], train_MC_predict_point[0, :])
-            # test_score_MC = mean_squared_error(test_y[0], test_MC_predict_point[0, :])
-            # print('Train Score: %.2f RMSE' % (train_score))
-            #   test_score = mean_squared_error(test_y[:, 0], test_predict[:, 0])
-            # print('Test Score: %.2f RMSE' % (test_score))
-            # pdb.set_trace()
             train_score_mean = np.mean(train_scores)
             train_score_std = np.std(train_scores)
             test_score_mean = np.mean(test_scores)
@@ -690,88 +673,9 @@ def evaluate_rf(model, train_x, test_x, train_y, test_y, scaler, label_data, pca
               bounds_df['contained'].mean())
         # pdb.set_trace()
         predictedanomaly = bounds_df.index[~bounds_df['contained']]
-        # pdb.set_trace()
 
-        # evbus = varU(train_x, train_y, test_x)
 
-        # v = evbus.calculate_variance()
 
-        # test_uncertainty_df['index'] = pd.DataFrame(test_predict).index
-        # import plotly.graph_objects as go
-        # test_uncertainty_plot_df = test_uncertainty_df  # .copy(deep=True)
-        # test_uncertainty_plot_df = test_uncertainty_plot_df.loc[test_uncertainty_plot_df['date'].between('2016-05-01', '2016-05-09')]
-        # truth_uncertainty_plot_df = pd.DataFrame()
-
-        # truth_uncertainty_plot_df['value'] = test_y[:, k]
-        # truth_uncertainty_plot_df['index'] = truth_uncertainty_plot_df.index
-
-        # .copy(deep=True)
-        # truth_uncertainty_plot_df = truth_uncertainty_plot_df.loc[testing_truth_df['date'].between('2016-05-01', '2016-05-09')]
-
-        # upper_trace = go.Scatter(
-        #   x=test_uncertainty_plot_df['index'],
-        #  y=test_uncertainty_plot_df['upper_bound'],
-        # mode='lines',
-        # fill=None,
-        # name='99% Upper Confidence Bound 3xSTD',
-        # )
-        # lower_trace = go.Scatter(
-        #   x=test_uncertainty_plot_df['index'],
-        #  y=test_uncertainty_plot_df['lower_bound'],
-        # mode='lines',
-        # fill='tonexty',
-        # name='99% Lower Confidence Bound 3xSTD',
-        # fillcolor='rgba(255, 211, 0, 0.1)',
-        # )
-        # real_trace = go.Scatter(
-        #   x=truth_uncertainty_plot_df['index'],
-        #  y=truth_uncertainty_plot_df['value'],
-        # mode='lines',
-        # fill=None,
-        # name='Real Values'
-        # )
-
-    # data = [upper_trace, lower_trace, real_trace]
-
-    # fig = go.Figure(data=data)
-    # fig.update_layout(title='RF Uncertainty',
-    #                 xaxis_title='index',
-    #                yaxis_title='value',
-    #               legend_font_size=14,
-    # paper_bgcolor='rgba(0,0,0,0)',
-    # plot_bgcolor ='rgba(0,0,0,0)',
-    #              )
-    # fig.show()
-    # bounds_df = pd.DataFrame()
-    # pdb.set_trace()
-
-    # Using 99% confidence bounds
-
-    # bounds_df['lower_bound'] = list(map(lambda x: max(x, -1), list(test_uncertainty_plot_df['lower_bound'])))
-    # bounds_df['prediction'] = test_uncertainty_plot_df['value_mean']
-    # bounds_df['real_value'] = truth_uncertainty_plot_df['value']
-    # bounds_df['upper_bound'] = list(map(lambda x: min(x, 1), list(test_uncertainty_plot_df['upper_bound'])))
-
-    # bounds_df['contained'] = ((bounds_df['real_value'] >= bounds_df['lower_bound']) &
-    #                         (bounds_df['real_value'] <= bounds_df['upper_bound']))
-
-    # print("Proportion of points contained within 99% confidence interval:",
-    #      bounds_df['contained'].mean())
-    # predictedanomaly = bounds_df.index[~bounds_df['contained']]
-
-    # model_n = IntervalRegressor(RandomForestRegressor(n_estimators=50))
-    # model_n.fit(train_x, train_y)
-    # pred_y = model_n.predict(test_x)
-    # pred_y = scaler.inverse_transform(pred_y.reshape(-1, 1))
-    # test_y = scaler.inverse_transform(test_y.reshape(-1, 1))
-    # bootstrapped_pred = model_n.predict(test_x)
-    # min_pred = bootstrapped_pred[:, 0]
-    # max_pred = bootstrapped_pred[:, bootstrapped_pred.shape[1] - 1]
-    # pdb.set_trace()
-
-    # train_y = scaler.inverse_transform(train_y)
-    # test_predict = scaler.inverse_transform(test_predict)
-    # test_y = scaler.inverse_transform(test_y)
     predictedanomaly = predictedanomaly.sort_values()
 
     N = 3
@@ -784,22 +688,10 @@ def evaluate_rf(model, train_x, test_x, train_y, test_y, scaler, label_data, pca
             newarr.append(predictedanomaly[i])
 
     predicteddanomaly = list(set(newarr))
-
-    # realanomaly = label_data['index']
-
     predicter = list(range(len(test_uncertainty_df)))
     # pdb.set_trace()
     precision, recall, Accuracy, F1 = score(label_data, predictedanomaly, test_predict)
 
-    # plt.errorbar(test_y, test_predict, yerr=np.sqrt(variance_rf.mean()), fmt='o')
-    #   pdb.set_trace()
-
-    # train_score = mean_squared_error(train_y.reshape(1, -1)[0], train_predict[0])
-    # print('Train Score: %.2f RMSE' % (train_score))
-    # test_score = mean_squared_error(test_y.reshape(1, -1)[0], test_predict[0])
-    # print('Test Score: %.2f RMSE' % (test_score))
-    # model.train_score = train_score
-    # model.test_score = test_score
 
     variance_rf = vari  # (np.array(err_up) - np.array(err_down)) / 6.0
     # variance_rf = np.array(test_uncertainty_df['upper_bound']- test_uncertainty_df['lower_bound']) / 3.0
@@ -838,7 +730,7 @@ def evaluate_rnn(model, train_x, test_x, train_y, test_y, scaler, optimiser, nam
     test_y = np.reshape(test_y, (test_y.shape[0], test_y.shape[2]))
     print(train_x.shape)
     print(train_y.shape)
-    # pdb.set_trace()
+
 
     model.fit(train_x, train_y, epochs=rnn_epochs, verbose=2)
     # Forecast
@@ -1053,7 +945,7 @@ def evaluate_rnn(model, train_x, test_x, train_y, test_y, scaler, optimiser, nam
     predicteddanomaly = list(set(newarr))
 
     predicter = list(range(len(test_uncertainty_df)))
-    # pdb.set_trace()
+    pdb.set_trace()
 
     precision, recall, Accuracy, F1 = score(label_data, predicteddanomaly, test_predict)
     # pdb.set_trace()

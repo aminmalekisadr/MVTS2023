@@ -45,9 +45,9 @@ def get_stacking(train_x, train_y, test_x, test_y, model1, model2, model3):
     # Basically, you'll want to pick a assortment of your favorite machine learning models
     # These models will get passed down to the meta-learner later
     import tensorflow as tf
-#    from sklearn.linear_model import LinearRegression
- #   from sklearn.ensemble import StackingRegressor
-  #  from tensorflow.keras.wrappers.scikit_learn import KerasRegressor
+    from sklearn.linear_model import LinearRegression
+    from sklearn.ensemble import StackingRegressor
+    from tensorflow.keras.wrappers.scikit_learn import KerasRegressor
     #my_devices = tf.config.experimental.list_physical_devices(device_type='GPU')
     #tf.config.experimental.set_visible_devices(devices=my_devices, device_type='GPU')
     '''meta learner'''
@@ -432,15 +432,6 @@ def evaluate_ga(dataset, label_data, train, test, reduction_method='sembd'):
         scaler_reduction, train_x_stf_reduction, train_x_st_reduction, train_y_reduction, test_x_stf_reduction, test_x_st_reduction, test_y_reduction, train_x_rf_stf_reduction, train_x_rf_reduction, train_y_rf_reduction, test_x_rf_stf_reduction, test_x_rf_reduction, test_y_rf_reduction, train_x_rf_st_reduction, test_x_rf_st_reduction \
             , train_x_lr_st_reduction, train_x_lr_reduction, train_y_lr_reduction, test_x_lr_st_reduction, test_x_lr_reduction, test_y_lr_reduction, reduction_variance, reduction_variance_ratio = process.mds(
             train, test, dataset1, show_plots=False)
-    elif reduction_method == 'lstm_autoencoder':
-        scaler_reduction, train_x_stf_reduction, train_x_st_reduction, train_y_reduction, test_x_stf_reduction, test_x_st_reduction, test_y_reduction, train_x_rf_stf_reduction, train_x_rf_reduction, train_y_rf_reduction, test_x_rf_stf_reduction, test_x_rf_reduction, test_y_rf_reduction, train_x_rf_st_reduction, test_x_rf_st_reduction \
-            , train_x_lr_st_reduction, train_x_lr_reduction, train_y_lr_reduction, test_x_lr_st_reduction, test_x_lr_reduction, test_y_lr_reduction, reduction_variance, reduction_variance_ratio = process.lstm_auto_encoder(
-            train, test, dataset1, show_plots=False)
-    elif reduction_method == 'lstm_vae':
-        scaler_reduction, train_x_stf_reduction, train_x_st_reduction, train_y_reduction, test_x_stf_reduction, test_x_st_reduction, test_y_reduction, train_x_rf_stf_reduction, train_x_rf_reduction, train_y_rf_reduction, test_x_rf_stf_reduction, test_x_rf_reduction, test_y_rf_reduction, train_x_rf_st_reduction, test_x_rf_st_reduction \
-            , train_x_lr_st_reduction, train_x_lr_reduction, train_y_lr_reduction, test_x_lr_st_reduction, test_x_lr_reduction, test_y_lr_reduction, reduction_variance, reduction_variance_ratio = process.variational_lstm_autoencoder(
-            train, test, dataset1, show_plots=False)
-
     else:
         raise ValueError('Invalid reduction method')
 
@@ -489,8 +480,6 @@ def evaluate_ga(dataset, label_data, train, test, reduction_method='sembd'):
         # print(model_rnn.summary())
         # pdb.set_trace()
         model_rnn_reduction = generate_rnn(hidden_layers, train_x_st_reduction.shape[2])
-        import pdb
-        pdb.set_trace()
 
         # population_rnn.append(model_rnn)
         population_rnn_reduction.append(model_rnn_reduction)
@@ -656,9 +645,11 @@ def evaluate_ga(dataset, label_data, train, test, reduction_method='sembd'):
                     test_time_rf = rf_model.test_time
 
                 else:
-                    F1_rf = 0
+                    F1_rf = 0.01
+                    best_rf_model = rf_model
             except:
-                F1_rf = 0
+                F1_rf = 0.01
+                best_rf_model = rf_model
                 pass
             print('start evaluating LR')
 
@@ -686,9 +677,7 @@ def evaluate_ga(dataset, label_data, train, test, reduction_method='sembd'):
                 # pdb.set_trace()
                 if (F1_lr > best_F1_lr):
                     # best_rmse_lr = test_score_lr
-                    best_lr_model = copy.copy(lr_model)
                     best_lr_model = lr_model
-
                     best_test_predict_lr = lr_model.test_predict
                     best_train_score_lr = lr_model.train_score
                     best_test_score_lr = lr_model.test_score
@@ -709,9 +698,13 @@ def evaluate_ga(dataset, label_data, train, test, reduction_method='sembd'):
                     print('Recall LR:%.3f ' % best_recall_lr)
                     print('Accuracy LR:%.3f ' % best_Accuracy_lr)
                 else:
-                    F1_lr = 0
+                    F1_lr = 0.001
+                    best_lr_model = lr_model
+
             except:
-                F1_lr = 0
+                F1_lr = 0.001
+                best_lr_model=lr_model
+
                 pass
 
         end_ga_2 = time.time() - start_ga_2  # End Timer
@@ -789,6 +782,9 @@ def evaluate_ga(dataset, label_data, train, test, reduction_method='sembd'):
         best_Accuracy_lr = best_Accuracy_rnn
         best_recall_lr = best_recall_rnn
         best_precision_lr = best_precision_rnn
+        train_time_lr = 0
+        test_time_lr = 0
+
 
     if F1_rf < 0.05:
         best_test_predict_rf = best_test_predict_rnn
@@ -801,6 +797,9 @@ def evaluate_ga(dataset, label_data, train, test, reduction_method='sembd'):
         best_Accuracy_rf = best_Accuracy_rnn
         best_recall_rf = best_recall_rnn
         best_precision_rf = best_precision_rnn
+        train_time_rf = 0
+        test_time_rf = 0
+
 
     dict_ensemble = ensemble_stacking(label_data, best_rnn_model, best_lr_model, best_rf_model, best_test_predict_rnn,
                                       best_test_predict_lr, best_test_predict_rf,
