@@ -69,26 +69,9 @@ The dataset is available [here](https://s3-us-west-2.amazonaws.com/telemanom/dat
 ## Experiments
 ### Configuration
 
- These parameters are used to setup the Genetic Algorithm, Recurrent Neural Networks and Random Forests, MC dropout used in training for the model.
+ The parameters that used to setup the Genetic Algorithm, Recurrent Neural Networks and Random Forests, MC dropout used in training for the model are in /experiments/Config.yaml folder.
  
-```
-mutation_rate = 0.1  # Mutation rate for GA
-min_mutation_momentum = 0.0001  # Min mutation momentum
-max_mutation_momentum = 0.1  # Max mutation momentum
-min_population = 20  # Min population for GA
-max_population = 50  # Max population for GA
-num_Iterations = 10  # Number of iterations to evaluate GA
-look_back = 1  # Num of timespaces to look back for training and testing
-max_dropout = 0.2  # Maximum percentage of dropout
-max_MC_dropout = 0.2  # Maximum percentage of dropout
-min_num_layers = 1  # Min number of hidden layers
-max_num_layers = 10  # Max number of hidden layers
-min_num_neurons = 10  # Min number of neurons in hidden layers
-max_num_neurons = 100  # Max number of neurons in hidden layers
-min_num_estimators = 100  # Min number of random forest trees
-max_num_estimators = 500  # Max number of random forest trees
-rnn_epochs = 1  # Epochs for RNN
-```
+
 
 ### Running an Experiment
 ## Future Direction:
